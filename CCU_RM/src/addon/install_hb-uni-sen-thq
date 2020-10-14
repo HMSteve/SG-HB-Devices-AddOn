@@ -1,0 +1,149 @@
+#!/bin/sh
+
+#------------------------------------------------------------------------------
+# in der WebUI angezeigter Ger‰tetyp, muss identisch sein mit dem Firmware-XML-Tag: <type name="HB-UNI-Sen-TH" id="HB-UNI-Sen-TH">
+DEVICE="HB-UNI-Sen-THQ"
+# in der WebUI angezeigte Ger‰tebeschreibung
+DEVICE_DESC="Temperatur-Luftfeuchte-TVOC-Sensor"
+# Name der Piktogramme, bestehend aus xx.png bzw. xx_thumb.png
+DEVICE_IMG=hb-uni-sen-thq.png
+DEVICE_THUMB=hb-uni-sen-thq_thumb.png
+
+#------------------------------------------------------------------------------
+# Edit DEVDB.tcl
+devdescrFile="/www/config/devdescr/DEVDB.tcl"
+devdescrSearch="array[[:space:]]*set[[:space:]]*DEV_PATHS[[:space:]]*{"
+
+devdescrInsert="$DEVICE {{50 \/config\/img\/devices\/50\/$DEVICE_THUMB} {250 \/config\/img\/devices\/250\/$DEVICE_IMG}} "
+
+if [ -z "`cat $devdescrFile | grep \"$DEVICE \"`" ]; then
+	sed -i "s/\($devdescrSearch\)/\1$devdescrInsert/g" $devdescrFile
+fi
+
+#------------------------------------------------------------------------------
+# Edit webui.js
+webuiFile="/www/webui/webui.js"
+webuiSearch="DEV_HIGHLIGHT[[:space:]]*=[[:space:]]*new Array();"
+
+webuiInsert="\n"
+webuiInsert="${webuiInsert}DEV_HIGHLIGHT['$DEVICE'] = new Object();\n"
+webuiInsert="${webuiInsert}DEV_LIST.push('$DEVICE');\n"
+webuiInsert="${webuiInsert}DEV_DESCRIPTION['$DEVICE']='$DEVICE_DESC';\n"
+webuiInsert="${webuiInsert}DEV_PATHS['$DEVICE'] = new Object();\n"
+webuiInsert="${webuiInsert}DEV_PATHS['$DEVICE']['50'] = '\/config\/img\/devices\/50\/$DEVICE_THUMB';\n"
+webuiInsert="${webuiInsert}DEV_PATHS['$DEVICE']['250'] = '\/config\/img\/devices\/250\/$DEVICE_IMG';"
+
+if [ -z "`cat $webuiFile | grep \"'$DEVICE'\"`" ]; then
+	sed -i "s/\($webuiSearch\)/\1$webuiInsert/g" $webuiFile
+fi
+
+#------------------------------------------------------------------------------
+### Edit stringtable_de.txt ###
+stringtable_deFile="/www/config/stringtable_de.txt"
+
+stringtable_deInsert="HBWEATHER|TVOC\t\${stringTableHBWeatherTVOC}"
+if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|TVOC"`" ]; then
+    echo -e $stringtable_deInsert >> $stringtable_deFile
+fi
+
+stringtable_deInsert="HBWEATHER|IAQ\t\${stringTableHBWeatherIAQ}"
+if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|IAQ"`" ]; then
+    echo -e $stringtable_deInsert >> $stringtable_deFile
+fi
+
+
+stringtable_deInsert="HBWEATHER|IAQ=IAQ_EXCELLENT\t\${stringTableHbIaqExcellent}"
+if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|IAQ=IAQ_EXCELLENT"`" ]; then
+    echo -e $stringtable_deInsert >> $stringtable_deFile
+fi
+stringtable_deInsert="HBWEATHER|IAQ=IAQ_GOOD\t\${stringTableHbIaqGood}"
+if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|IAQ=IAQ_GOOD"`" ]; then
+    echo -e $stringtable_deInsert >> $stringtable_deFile
+fi
+stringtable_deInsert="HBWEATHER|IAQ=IAQ_MODERATE\t\${stringTableHbIaqModerate}"
+if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|IAQ=IAQ_MODERATE"`" ]; then
+    echo -e $stringtable_deInsert >> $stringtable_deFile
+fi
+stringtable_deInsert="HBWEATHER|IAQ=IAQ_POOR\t\${stringTableHbIaqPoor}"
+if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|IAQ=IAQ_POOR"`" ]; then
+    echo -e $stringtable_deInsert >> $stringtable_deFile
+fi
+stringtable_deInsert="HBWEATHER|IAQ=IAQ_UNHEALTHY\t\${stringTableHbIaqUnhealthy}"
+if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|IAQ=IAQ_UNHEALTHY"`" ]; then
+    echo -e $stringtable_deInsert >> $stringtable_deFile
+fi
+
+
+#------------------------------------------------------------------------------
+### Edit German translate.lang.stringtable.js ###
+translate_deFile="/www/webui/js/lang/de/translate.lang.stringtable.js"
+translate_deSearch="\"dummy\" : \"\","
+
+translate_deInsert="\n    \"stringTableHBWeatherTVOC\" : \"TVOC\","
+if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherTVOC\"`" ]; then
+	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
+fi
+
+translate_deInsert="\n    \"stringTableHBWeatherIAQ\" : \"Luftqualit‰t\","
+if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherIAQ\"`" ]; then
+	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
+fi
+
+
+translate_deInsert="\n    \"stringTableHbIaqExcellent\" : \"Luftqualit‰t: Hervorragend (1)\","
+if [ -z "`cat $translate_deFile | grep \"stringTableHbIaqExcellent\"`" ]; then
+	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
+fi
+translate_deInsert="\n    \"stringTableHbIaqGood\" : \"Luftqualit‰t: Gut (2)\","
+if [ -z "`cat $translate_deFile | grep \"stringTableHbIaqGood\"`" ]; then
+	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
+fi
+translate_deInsert="\n    \"stringTableHbIaqModerate\" : \"Luftqualit‰t: Mittelm‰ﬂig (3)\","
+if [ -z "`cat $translate_deFile | grep \"stringTableHbIaqModerate\"`" ]; then
+	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
+fi
+translate_deInsert="\n    \"stringTableHbIaqPoor\" : \"Luftqualit‰t: Schlecht (4)\","
+if [ -z "`cat $translate_deFile | grep \"stringTableHbIaqPoor\"`" ]; then
+	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
+fi
+translate_deInsert="\n    \"stringTableHbIaqUnhealthy\" : \"Luftqualit‰t: Ungesund (5)\","
+if [ -z "`cat $translate_deFile | grep \"stringTableHbIaqUnhealthy\"`" ]; then
+	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
+fi
+
+#------------------------------------------------------------------------------
+### Edit English translate.lang.stringtable.js ###
+translate_enFile="/www/webui/js/lang/en/translate.lang.stringtable.js"
+translate_enSearch="\"dummy\" : \"\","
+
+translate_enInsert="\n    \"stringTableHBWeatherTVOC\" : \"TVOC\","
+if [ -z "`cat $translate_enFile | grep \"stringTableHBWeatherTVOC\"`" ]; then
+	sed -i "s/\($translate_enSearch\)/\1$translate_enInsert/g" $translate_enFile
+fi
+
+translate_enInsert="\n    \"stringTableHBWeatherIAQ\" : \"Air Quality\","
+if [ -z "`cat $translate_enFile | grep \"stringTableHBWeatherIAQ\"`" ]; then
+	sed -i "s/\($translate_enSearch\)/\1$translate_enInsert/g" $translate_enFile
+fi
+
+
+translate_enInsert="\n    \"stringTableHbIaqExcellent\" : \"Air Quality: Excellent (1)\","
+if [ -z "`cat $translate_enFile | grep \"stringTableHbIaqExcellent\"`" ]; then
+	sed -i "s/\($translate_enSearch\)/\1$translate_enInsert/g" $translate_enFile
+fi
+translate_enInsert="\n    \"stringTableHbIaqGood\" : \"Air Quality: Good (2)\","
+if [ -z "`cat $translate_enFile | grep \"stringTableHbIaqGood\"`" ]; then
+	sed -i "s/\($translate_enSearch\)/\1$translate_enInsert/g" $translate_enFile
+fi
+translate_enInsert="\n    \"stringTableHbIaqModerate\" : \"Air Quality: Moderate (3)\","
+if [ -z "`cat $translate_enFile | grep \"stringTableHbIaqModerate\"`" ]; then
+	sed -i "s/\($translate_enSearch\)/\1$translate_enInsert/g" $translate_enFile
+fi
+translate_enInsert="\n    \"stringTableHbIaqPoor\" : \"Air Quality: Poor (4)\","
+if [ -z "`cat $translate_enFile | grep \"stringTableHbIaqPoor\"`" ]; then
+	sed -i "s/\($translate_enSearch\)/\1$translate_enInsert/g" $translate_enFile
+fi
+translate_enInsert="\n    \"stringTableHbIaqUnhealthy\" : \"Air Quality: Unhealthy (5)\","
+if [ -z "`cat $translate_enFile | grep \"stringTableHbIaqUnhealthy\"`" ]; then
+	sed -i "s/\($translate_enSearch\)/\1$translate_enInsert/g" $translate_enFile
+fi

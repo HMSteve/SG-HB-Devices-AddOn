@@ -1,0 +1,38 @@
+#!/bin/sh
+
+#------------------------------------------------------------------------------
+# in der WebUI angezeigter Gerätetyp, muss identisch sein mit dem Firmware-XML-Tag: <type name="HB-UNI-Sen-TH" id="HB-UNI-Sen-TH">
+DEVICE="HB-UNI-Sen-RainCounter"
+# in der WebUI angezeigte Gerätebeschreibung
+DEVICE_DESC="Regenmesser"
+# Name der Piktogramme, bestehend aus xx.png bzw. xx_thumb.png
+DEVICE_IMG=hb-uni-sen-raincounter.png
+DEVICE_THUMB=hb-uni-sen-raincounter_thumb.png
+
+#Name des xml files
+FIRMWARE_FILE=/firmware/rftypes/hb-uni-sen-raincounter.xml
+
+#------------------------------------------------------------------------------
+# Undo DEVDB.tcl changes
+devdescrFile="/www/config/devdescr/DEVDB.tcl"
+devdescrSearch="$DEVICE {{50 \/config\/img\/devices\/50\/$DEVICE_THUMB} {250 \/config\/img\/devices\/250\/$DEVICE_IMG}} "
+
+if [ "`cat $devdescrFile | grep \"$DEVICE \"`" ]; then
+        sed -i "s/\($devdescrSearch\)//g" $devdescrFile
+fi
+
+#------------------------------------------------------------------------------
+# Undo webui.js changes
+webuiFile="/www/webui/webui.js"
+if [ "`cat $webuiFile | grep \"'$DEVICE'\"`" ]; then
+        sed -i "/\('$DEVICE'\)/d" $webuiFile
+fi
+
+#------------------------------------------------------------------------------
+# remove device_xml links
+rm -f $FIRMWARE_FILE
+
+#------------------------------------------------------------------------------
+# remove image files
+rm -f /www/config/img/devices/250/$DEVICE_IMG
+rm -f /www/config/img/devices/50/$DEVICE_THUMB

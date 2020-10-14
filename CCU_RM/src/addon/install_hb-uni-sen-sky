@@ -1,0 +1,114 @@
+#!/bin/sh
+
+#------------------------------------------------------------------------------
+# in der WebUI angezeigter Geraetetyp, muss identisch sein mit dem Firmware-XML-Tag: <type name="HB-UNI-Sen-TH" id="HB-UNI-Sen-TH">
+DEVICE="HB-UNI-Sen-Sky"
+# in der WebUI angezeigte Geraetebeschreibung
+DEVICE_DESC="Helligkeits-UV-Himmelstemperatur-Sensor"
+# Name der Piktogramme, bestehend aus xx.png bzw. xx_thumb.png
+DEVICE_IMG=hb-uni-sen-sky.png
+DEVICE_THUMB=hb-uni-sen-sky_thumb.png
+
+
+#------------------------------------------------------------------------------
+# Edit DEVDB.tcl
+devdescrFile="/www/config/devdescr/DEVDB.tcl"
+devdescrSearch="array[[:space:]]*set[[:space:]]*DEV_PATHS[[:space:]]*{"
+
+devdescrInsert="$DEVICE {{50 \/config\/img\/devices\/50\/$DEVICE_THUMB} {250 \/config\/img\/devices\/250\/$DEVICE_IMG}} "
+
+
+if [ -z "`cat $devdescrFile | grep \"$DEVICE \"`" ]; then
+	sed -i "s/\($devdescrSearch\)/\1$devdescrInsert/g" $devdescrFile
+fi
+
+#------------------------------------------------------------------------------
+# Edit webui.js
+webuiFile="/www/webui/webui.js"
+webuiSearch="DEV_HIGHLIGHT[[:space:]]*=[[:space:]]*new Array();"
+
+webuiInsert="\n"
+webuiInsert="${webuiInsert}DEV_HIGHLIGHT['$DEVICE'] = new Object();\n"
+webuiInsert="${webuiInsert}DEV_LIST.push('$DEVICE');\n"
+webuiInsert="${webuiInsert}DEV_DESCRIPTION['$DEVICE']='$DEVICE_DESC';\n"
+webuiInsert="${webuiInsert}DEV_PATHS['$DEVICE'] = new Object();\n"
+webuiInsert="${webuiInsert}DEV_PATHS['$DEVICE']['50'] = '\/config\/img\/devices\/50\/$DEVICE_THUMB';\n"
+webuiInsert="${webuiInsert}DEV_PATHS['$DEVICE']['250'] = '\/config\/img\/devices\/250\/$DEVICE_IMG';"
+
+if [ -z "`cat $webuiFile | grep \"'$DEVICE'\"`" ]; then
+	sed -i "s/\($webuiSearch\)/\1$webuiInsert/g" $webuiFile
+fi
+
+#------------------------------------------------------------------------------
+### Edit stringtable_de.txt ###
+stringtable_deFile="/www/config/stringtable_de.txt"
+
+stringtable_deInsert="HBWEATHER|SKY_TEMPERATURE\t\${stringTableHBWeatherSkyTemperature}"
+if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|SKY_TEMPERATURE"`" ]; then
+    echo -e $stringtable_deInsert >> $stringtable_deFile
+fi
+
+stringtable_deInsert="HBWEATHER|UV_INDEX\t\${stringTableHBWeatherUvIndex}"
+if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|UV_INDEX"`" ]; then
+    echo -e $stringtable_deInsert >> $stringtable_deFile
+fi
+
+stringtable_deInsert="HBWEATHER|LUX\t\${stringTableHBWeatherLux}"
+if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|LUX"`" ]; then
+    echo -e $stringtable_deInsert >> $stringtable_deFile
+fi
+
+stringtable_deInsert="HBWEATHER|BATTERY_VOLTAGE\t\${stringTableHBWeatherBatteryVoltage}"
+if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|BATTERY_VOLTAGE"`" ]; then
+    echo -e $stringtable_deInsert >> $stringtable_deFile
+fi
+
+#------------------------------------------------------------------------------
+### Edit German translate.lang.stringtable.js ###
+translate_deFile="/www/webui/js/lang/de/translate.lang.stringtable.js"
+translate_deSearch="\"dummy\" : \"\","
+
+translate_deInsert="\n    \"stringTableHBWeatherSkyTemperature\" : \"Himmelstemperatur\","
+if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherSkyTemperature\"`" ]; then
+	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
+fi
+
+translate_deInsert="\n    \"stringTableHBWeatherUvIndex\" : \"UV-Index\","
+if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherUvIndex\"`" ]; then
+	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
+fi
+
+translate_deInsert="\n    \"stringTableHBWeatherLux\" : \"Helligkeit\","
+if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherLux\"`" ]; then
+	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
+fi
+
+translate_deInsert="\n    \"stringTableHBWeatherBatteryVoltage\" : \"Batteriespannung\","
+if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherBatteryVoltage\"`" ]; then
+	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
+fi
+
+#------------------------------------------------------------------------------
+### Edit English translate.lang.stringtable.js ###
+translate_enFile="/www/webui/js/lang/en/translate.lang.stringtable.js"
+translate_enSearch="\"dummy\" : \"\","
+
+translate_enInsert="\n    \"stringTableHBWeatherSkyTemperature\" : \"Sky Temperature\","
+if [ -z "`cat $translate_enFile | grep \"stringTableHBWeatherSkyTemperature\"`" ]; then
+	sed -i "s/\($translate_enSearch\)/\1$translate_enInsert/g" $translate_enFile
+fi
+
+translate_enInsert="\n    \"stringTableHBWeatherUvIndex\" : \"UV Index\","
+if [ -z "`cat $translate_enFile | grep \"stringTableHBWeatherUvIndex\"`" ]; then
+	sed -i "s/\($translate_enSearch\)/\1$translate_enInsert/g" $translate_enFile
+fi
+
+translate_enInsert="\n    \"stringTableHBWeatherLux\" : \"Brightness\","
+if [ -z "`cat $translate_enFile | grep \"stringTableHBWeatherLux\"`" ]; then
+	sed -i "s/\($translate_enSearch\)/\1$translate_enInsert/g" $translate_enFile
+fi
+
+translate_enInsert="\n    \"stringTableHBWeatherBatteryVoltage\" : \"Battery Voltage\","
+if [ -z "`cat $translate_enFile | grep \"stringTableHBWeatherBatteryVoltage\"`" ]; then
+	sed -i "s/\($translate_enSearch\)/\1$translate_enInsert/g" $translate_enFile
+fi
