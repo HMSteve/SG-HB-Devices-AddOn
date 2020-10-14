@@ -8,7 +8,7 @@ Das AddOn dient der Buendelung der CCU3-Unterstuetzung meiner HB-Geraete, bislan
 
 - [HB-UNI-Sen-Sky](https://github.com/HMSteve/tree/master/HB-UNI-Sen-Sky)
 - [HB-UNI-Sen-TH](https://github.com/HMSteve/tree/master/HB-UNI-Sen-TH)
-- [HB-UNI-Sen-RainCounter](https://github.com/HMSteve/tree/master/HB-UNI-Sen-RainCounter)
+- [HB-UNI-Sen-RainCounter](https://github.com/HMSteve/HB-UNI-Sen-RainCounter/tree/master)
 
 
 ## Change Log
