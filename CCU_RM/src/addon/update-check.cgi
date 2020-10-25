@@ -1,6 +1,6 @@
 #!/bin/tclsh
-set checkURL    "https://raw.githubusercontent.com/HMSteve/master/SG-HB-Devices-AddOn/CCU_RM/src/addon/VERSION"
-set downloadURL "https://github.com/HMSteve/raw/master/SG-HB-Devices-AddOn/CCU_RM/sg-hb-devices-addon.tgz"
+set checkURL    "https://github.com/HMSteve/SG-HB-Devices-AddOn/blob/master/CCU_RM/src/addon/VERSION"
+set downloadURL "https://github.com/HMSteve/SG-HB-Devices-AddOn/blob/master/CCU_RM/sg-hb-devices-addon.tgz"
 catch {
   set input $env(QUERY_STRING)
   set pairs [split $input &]
