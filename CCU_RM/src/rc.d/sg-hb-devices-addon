@@ -150,7 +150,7 @@ case "$1" in
       echo "Info: <center>Creative Commons BY-NC-SA<br>"
       echo "Info: <center><a href='https://github.com/HMSteve/${ADDON_NAME}'>https://github.com/HMSteve/${ADDON_NAME}</a>"
       echo "Version: $(cat ${ADDON_DIR}/VERSION)"
-      echo "Name: ${ADDON_NAME}"
+      echo "Name: SG HB Devices"
       echo "Operations: uninstall"
       echo "Update: /addons/${ADDON_NAME}/update-check.cgi"
     ;;
