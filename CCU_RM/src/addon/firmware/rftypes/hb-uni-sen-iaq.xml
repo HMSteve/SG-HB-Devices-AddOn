@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <device version="2" rx_modes="CONFIG,WAKEUP,LAZY_CONFIG" cyclic_timeout="45000">
   <supported_types>
-    <type name="HB-UNI-Sen-THQ" id="HB-UNI-Sen-THQ" updatable="true">
+    <type name="HB-UNI-Sen-IAQ" id="HB-UNI-Sen-IAQ" updatable="true">
       <parameter index="9.0" size="1.0" cond_op="GE" const_value="0x10" />
       <parameter index="10.0" size="2.0" const_value="0xF801" />
     </type>
   </supported_types>
-  <paramset type="MASTER" id="hm_uni_sen_thq_dev_master">
+  <paramset type="MASTER" id="hm_uni_sen_iaq_dev_master">
     <parameter id="DEVICE_LED_MODE">
       <logical type="option">
         <option id="OFF" />
@@ -74,8 +74,8 @@
       <link_roles>
         <source name="WEATHER_TH" />
       </link_roles>
-      <paramset type="MASTER" id="HB-UNI-Sen-THQ_master" />
-      <paramset type="VALUES" id="HB-UNI-Sen-THQ_values">
+      <paramset type="MASTER" id="HB-UNI-Sen-IAQ_master" />
+      <paramset type="VALUES" id="HB-UNI-Sen-IAQ_values">
         <parameter id="TEMPERATURE" operations="read,event">
           <logical type="float" min="-50.0" max="120.0" unit="°C" />
           <physical type="integer" interface="command" value_id="TEMPERATURE">
@@ -125,7 +125,7 @@
           <conversion type="float_integer_scale" factor="1000.0" />
         </parameter>
       </paramset>
-      <paramset type="LINK" id="HB-UNI-Sen-THQ_link"></paramset>
+      <paramset type="LINK" id="HB-UNI-Sen-IAQ_link"></paramset>
     </channel>
   </channels>
   <frames>

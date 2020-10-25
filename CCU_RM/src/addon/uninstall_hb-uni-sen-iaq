@@ -1,15 +1,15 @@
 #!/bin/sh
 
 #------------------------------------------------------------------------------
-# in der WebUI angezeigter GerÃ¤tetyp, muss identisch sein mit dem Firmware-XML-Tag: <type name="HB-UNI-Sen-TH" id="HB-UNI-Sen-TH">
-DEVICE="HB-UNI-Sen-THQ"
-# in der WebUI angezeigte GerÃ¤tebeschreibung
-DEVICE_DESC="Temperatur-Luftfeuchte-TVOC-Sensor"
+# in der WebUI angezeigter Gerätetyp, muss identisch sein mit dem Firmware-XML-Tag: <type name="HB-UNI-Sen-TH" id="HB-UNI-Sen-TH">
+DEVICE="HB-UNI-Sen-IAQ"
+# in der WebUI angezeigte Gerätebeschreibung
+DEVICE_DESC="Luftgüte-Sensor"
 # Name der Piktogramme, bestehend aus xx.png bzw. xx_thumb.png
-DEVICE_IMG=hb-uni-sen-thq.png
-DEVICE_THUMB=hb-uni-sen-thq_thumb.png
+DEVICE_IMG=hb-uni-sen-iaq.png
+DEVICE_THUMB=hb-uni-sen-iaq_thumb.png
 #Name des xml files
-FIRMWARE_FILE=/firmware/rftypes/hb-uni-sen-thq.xml
+FIRMWARE_FILE=/firmware/rftypes/hb-uni-sen-iaq.xml
 
 #------------------------------------------------------------------------------
 # Undo DEVDB.tcl changes

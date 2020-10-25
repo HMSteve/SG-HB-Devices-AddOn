@@ -2,12 +2,12 @@
 
 #------------------------------------------------------------------------------
 # in der WebUI angezeigter Gerätetyp, muss identisch sein mit dem Firmware-XML-Tag: <type name="HB-UNI-Sen-TH" id="HB-UNI-Sen-TH">
-DEVICE="HB-UNI-Sen-THQ"
+DEVICE="HB-UNI-Sen-IAQ"
 # in der WebUI angezeigte Gerätebeschreibung
-DEVICE_DESC="Temperatur-Luftfeuchte-TVOC-Sensor"
+DEVICE_DESC="Luftgüte-Sensor"
 # Name der Piktogramme, bestehend aus xx.png bzw. xx_thumb.png
-DEVICE_IMG=hb-uni-sen-thq.png
-DEVICE_THUMB=hb-uni-sen-thq_thumb.png
+DEVICE_IMG=hb-uni-sen-iaq.png
+DEVICE_THUMB=hb-uni-sen-iaq_thumb.png
 
 #------------------------------------------------------------------------------
 # Edit DEVDB.tcl
