@@ -84,29 +84,29 @@ if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherTVOC\"`" ]; then
 	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
 fi
 
-translate_deInsert="\n    \"stringTableHBWeatherIAQ\" : \"Luftqualit‰t\","
+translate_deInsert="\n    \"stringTableHBWeatherIAQ\" : \"Luftqualit%E4t\","
 if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherIAQ\"`" ]; then
 	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
 fi
 
 
-translate_deInsert="\n    \"stringTableHbIaqExcellent\" : \"Luftqualit‰t: Hervorragend (1)\","
+translate_deInsert="\n    \"stringTableHbIaqExcellent\" : \"Luftqualit%E4t: Hervorragend (1)\","
 if [ -z "`cat $translate_deFile | grep \"stringTableHbIaqExcellent\"`" ]; then
 	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
 fi
-translate_deInsert="\n    \"stringTableHbIaqGood\" : \"Luftqualit‰t: Gut (2)\","
+translate_deInsert="\n    \"stringTableHbIaqGood\" : \"Luftqualit%E4t: Gut (2)\","
 if [ -z "`cat $translate_deFile | grep \"stringTableHbIaqGood\"`" ]; then
 	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
 fi
-translate_deInsert="\n    \"stringTableHbIaqModerate\" : \"Luftqualit‰t: Mittelm‰ﬂig (3)\","
+translate_deInsert="\n    \"stringTableHbIaqModerate\" : \"Luftqualit%E4t: Mittelm%E4%DFig (3)\","
 if [ -z "`cat $translate_deFile | grep \"stringTableHbIaqModerate\"`" ]; then
 	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
 fi
-translate_deInsert="\n    \"stringTableHbIaqPoor\" : \"Luftqualit‰t: Schlecht (4)\","
+translate_deInsert="\n    \"stringTableHbIaqPoor\" : \"Luftqualit%E4t: Schlecht (4)\","
 if [ -z "`cat $translate_deFile | grep \"stringTableHbIaqPoor\"`" ]; then
 	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
 fi
-translate_deInsert="\n    \"stringTableHbIaqUnhealthy\" : \"Luftqualit‰t: Ungesund (5)\","
+translate_deInsert="\n    \"stringTableHbIaqUnhealthy\" : \"Luftqualit%E4t: Ungesund (5)\","
 if [ -z "`cat $translate_deFile | grep \"stringTableHbIaqUnhealthy\"`" ]; then
 	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
 fi
