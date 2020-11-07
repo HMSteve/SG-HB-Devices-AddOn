@@ -32,7 +32,7 @@ fi
 ### undo stringtable_de.txt changes
 stringtable_deFile="/www/config/stringtable_de.txt"
 
-stringtable_deSearch="HBWEATHER|CARBONDIOXIDE"
+stringtable_deSearch="HBWEATHER|CO2"
 sed -i "/\($stringtable_deSearch\)/d" $stringtable_deFile
 
 
@@ -40,14 +40,14 @@ sed -i "/\($stringtable_deSearch\)/d" $stringtable_deFile
 ### undo German translate.lang.stringtable.js changes
 translate_deFile="/www/webui/js/lang/de/translate.lang.stringtable.js"
 
-translate_deSearch="stringTableHBWeatherCarbondioxide"
+translate_deSearch="stringTableHBWeatherCO2"
 sed -i "/\(${translate_deSearch}\)/d" $translate_deFile
 
 #------------------------------------------------------------------------------
 ### undo English translate.lang.stringtable.js changes
 translate_enFile="/www/webui/js/lang/en/translate.lang.stringtable.js"
 
-translate_enSearch="stringTableHBWeatherCarbondioxide"
+translate_enSearch="stringTableHBWeatherCO2"
 sed -i "/\(${translate_enSearch}\)/d" $translate_enFile
 
 #------------------------------------------------------------------------------

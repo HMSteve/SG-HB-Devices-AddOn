@@ -92,9 +92,9 @@ CO2<?xml version="1.0" encoding="iso-8859-1"?>
             <event frame="WEATHER_EVENT" />
           </physical>
         </parameter>
-        <parameter id="CARBONDIOXIDE" operations="read,event">
+        <parameter id="CO2" operations="read,event">
           <logical type="integer" min="0" max="40000" unit="ppm" />
-          <physical type="integer" interface="command" value_id="CARBONDIOXIDE" no_init="true">
+          <physical type="integer" interface="command" value_id="CO2" no_init="true">
             <event frame="WEATHER_EVENT" />
           </physical>
         </parameter>
@@ -113,7 +113,7 @@ CO2<?xml version="1.0" encoding="iso-8859-1"?>
     <frame id="WEATHER_EVENT" direction="from_device" event="true" fixed_channel="1" type="0x70">
       <parameter type="integer" signed="true"  index="9"  size="1.7" param="TEMPERATURE" />
       <parameter type="integer" signed="true"  index="11"  size="1.0" param="HUMIDITY" />
-      <parameter type="integer" index="12" size="2.0" param="CARBONDIOXIDE" />
+      <parameter type="integer" index="12" size="2.0" param="CO2" />
       <parameter type="integer" index="14" size="1.0" param="BATTERY_VOLTAGE" />
     </frame>
   </frames>

@@ -41,8 +41,8 @@ fi
 ### Edit stringtable_de.txt ###
 stringtable_deFile="/www/config/stringtable_de.txt"
 
-stringtable_deInsert="HBWEATHER|CARBONDIOXIDE\t\${stringTableHBWeatherCarbondioxide}"
-if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|CARBONDIOXIDE"`" ]; then
+stringtable_deInsert="HBWEATHER|CO2\t\${stringTableHBWeatherCO2}"
+if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|CO2"`" ]; then
     echo -e $stringtable_deInsert >> $stringtable_deFile
 fi
 
@@ -52,8 +52,8 @@ fi
 translate_deFile="/www/webui/js/lang/de/translate.lang.stringtable.js"
 translate_deSearch="\"dummy\" : \"\","
 
-translate_deInsert="\n    \"stringTableHBWeatherCarbondioxide\" : \"Kohlendioxid\","
-if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherCarbondioxide\"`" ]; then
+translate_deInsert="\n    \"stringTableHBWeatherCO2\" : \"Kohlendioxid\","
+if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherCO2\"`" ]; then
 	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
 fi
 
@@ -63,7 +63,7 @@ fi
 translate_enFile="/www/webui/js/lang/en/translate.lang.stringtable.js"
 translate_enSearch="\"dummy\" : \"\","
 
-translate_enInsert="\n    \"stringTableHBWeatherCarbondioxide\" : \"Carbondioxide\","
-if [ -z "`cat $translate_enFile | grep \"stringTableHBWeatherCarbondioxide\"`" ]; then
+translate_enInsert="\n    \"stringTableHBWeatherCO2\" : \"Carbondioxide\","
+if [ -z "`cat $translate_enFile | grep \"stringTableHBWeatherCO2\"`" ]; then
 	sed -i "s/\($translate_enSearch\)/\1$translate_enInsert/g" $translate_enFile
 fi
