@@ -1,4 +1,4 @@
-CO2<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml version="1.0" encoding="iso-8859-1"?>
 <device version="2" rx_modes="CONFIG,WAKEUP,LAZY_CONFIG" cyclic_timeout="45000">
   <supported_types>
     <type name="HB-UNI-Sen-CO2" id="HB-UNI-Sen-CO2" updatable="true">
@@ -70,7 +70,7 @@ CO2<?xml version="1.0" encoding="iso-8859-1"?>
         </parameter>
       </paramset>
     </channel>
-    <channel index="1" type="WEATHER" autoregister="true">
+    <channel index="1" type="HBWEATHER" autoregister="true">
       <link_roles>
         <source name="WEATHER_TH" />
       </link_roles>
