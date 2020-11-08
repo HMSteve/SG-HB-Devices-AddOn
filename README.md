@@ -4,7 +4,7 @@
 Das AddOn dient der Buendelung der CCU3-Unterstuetzung meiner HB-Geraete, bislang verschiedene Sensoren.
 
 
-## Unterstützte Geräte
+## Unterstuetzte Geraete
 
 - [HB-UNI-Sen-Sky](https://github.com/HMSteve/HB-UNI-Sen-Sky/tree/master)
 - [HB-UNI-Sen-TH](https://github.com/HMSteve/HB-UNI-Sen-TH/tree/master)
@@ -15,6 +15,9 @@ Das AddOn dient der Buendelung der CCU3-Unterstuetzung meiner HB-Geraete, bislan
 
 ## Change Log
 
+- 1.21 - 08.11.2020
+  - HB-UNI-Sen-CO2 um Datenpunkt Luftdruck und Config-Parameter Hoehe und Temperatur-Offset ergaenzt
+
 - 1.20 - 07.11.2020
   - HB-UNI-Sen-CO2 ergaenzt
 
@@ -24,4 +27,4 @@ Das AddOn dient der Buendelung der CCU3-Unterstuetzung meiner HB-Geraete, bislan
 
 - 1.00 - 30.09.2020
   - initiale Version
-  - Das Addon lehnt sich sehr stark an das HB-TM-Devices-AddOn von Tom an und wuerde ohne seine und die Arbeiten von Jérôme nicht existieren - Danke an die beiden!
+  - Das Addon lehnt sich sehr stark an das HB-TM-Devices-AddOn von Tom an und wuerde ohne seine und die Arbeiten von Jï¿½rï¿½me nicht existieren - Danke an die beiden!

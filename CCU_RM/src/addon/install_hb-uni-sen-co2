@@ -46,6 +46,11 @@ if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|CO2"`" ]; then
     echo -e $stringtable_deInsert >> $stringtable_deFile
 fi
 
+stringtable_deInsert="HBWEATHER|AIR_PRESSURE\t\${stringTableHBWeatherAirPressure}"
+if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|AIR_PRESSURE"`" ]; then
+    echo -e $stringtable_deInsert >> $stringtable_deFile
+fi
+
 
 #------------------------------------------------------------------------------
 ### Edit German translate.lang.stringtable.js ###
@@ -57,6 +62,10 @@ if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherCO2\"`" ]; then
 	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
 fi
 
+translate_deInsert="\n    \"stringTableHBWeatherAirPressure\" : \"Luftdruck\","
+if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherAirPressure\"`" ]; then
+	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
+fi
 
 #------------------------------------------------------------------------------
 ### Edit English translate.lang.stringtable.js ###
@@ -65,5 +74,10 @@ translate_enSearch="\"dummy\" : \"\","
 
 translate_enInsert="\n    \"stringTableHBWeatherCO2\" : \"Carbondioxide\","
 if [ -z "`cat $translate_enFile | grep \"stringTableHBWeatherCO2\"`" ]; then
+	sed -i "s/\($translate_enSearch\)/\1$translate_enInsert/g" $translate_enFile
+fi
+
+translate_enInsert="\n    \"stringTableHBWeatherAirPressure\" : \"Air Pressure\","
+if [ -z "`cat $translate_enFile | grep \"stringTableHBWeatherAirPressure\"`" ]; then
 	sed -i "s/\($translate_enSearch\)/\1$translate_enInsert/g" $translate_enFile
 fi
