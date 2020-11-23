@@ -119,7 +119,7 @@
           <physical type="integer" interface="command" value_id="BATTERY_VOLTAGE">
             <event frame="WEATHER_EVENT" />
           </physical>
-          <conversion type="float_integer_scale" factor="10.0" />
+          <conversion type="float_integer_scale" factor="100.0" />
         </parameter>
       </paramset>
       <paramset type="LINK" id="HB-UNI-Sen-CO2_link"></paramset>
@@ -131,7 +131,7 @@
       <parameter type="integer" index="11" size="1.0" param="HUMIDITY" />
       <parameter type="integer" index="12" size="2.0" param="AIR_PRESSURE" />
       <parameter type="integer" index="14" size="2.0" param="CO2" />
-      <parameter type="integer" index="16" size="1.0" param="BATTERY_VOLTAGE" />
+      <parameter type="integer" index="16" size="2.0" param="BATTERY_VOLTAGE" />
     </frame>
   </frames>
   <paramset_defs></paramset_defs>
