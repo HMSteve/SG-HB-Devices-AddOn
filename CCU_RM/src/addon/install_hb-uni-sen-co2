@@ -23,6 +23,7 @@ fi
 #------------------------------------------------------------------------------
 # Edit webui.js
 webuiFile="/www/webui/webui.js"
+
 webuiSearch="DEV_HIGHLIGHT[[:space:]]*=[[:space:]]*new Array();"
 
 webuiInsert="\n"
@@ -37,6 +38,33 @@ if [ -z "`cat $webuiFile | grep \"'$DEVICE'\"`" ]; then
 	sed -i "s/\($webuiSearch\)/\1$webuiInsert/g" $webuiFile
 fi
 
+# Insert channel config params
+webuiSearchBegin="elvST[[:space:]]*=[[:space:]]*new Array();"
+
+webuiInsertParam="HBWEATHER|CO2_CALIB_REF"
+webuiInsertValue="stringTableHBWeatherCo2CalibRef"
+webuiInsert="\n"
+webuiInsert="${webuiInsert}elvST['$webuiInsertParam'] = '\${$webuiInsertValue}';"
+if [ -z "`cat $webuiFile | grep \"$webuiInsertParam\"`" ]; then
+	sed -i "s/\($webuiSearchBegin\)/\1$webuiInsert/g" $webuiFile
+fi
+
+webuiInsertParam="HBWEATHER|CO2_LEVEL_AMBER"
+webuiInsertValue="stringTableHBWeatherCo2LevelAmber"
+webuiInsert="\n"
+webuiInsert="${webuiInsert}elvST['$webuiInsertParam'] = '\${$webuiInsertValue}';"
+if [ -z "`cat $webuiFile | grep \"$webuiInsertParam\"`" ]; then
+	sed -i "s/\($webuiSearchBegin\)/\1$webuiInsert/g" $webuiFile
+fi
+
+webuiInsertParam="HBWEATHER|CO2_LEVEL_RED"
+webuiInsertValue="stringTableHBWeatherCo2LevelRed"
+webuiInsert="\n"
+webuiInsert="${webuiInsert}elvST['$webuiInsertParam'] = '\${$webuiInsertValue}';"
+if [ -z "`cat $webuiFile | grep \"$webuiInsertParam\"`" ]; then
+	sed -i "s/\($webuiSearchBegin\)/\1$webuiInsert/g" $webuiFile
+fi
+
 #------------------------------------------------------------------------------
 ### Edit stringtable_de.txt ###
 stringtable_deFile="/www/config/stringtable_de.txt"
@@ -48,6 +76,21 @@ fi
 
 stringtable_deInsert="HBWEATHER|AIR_PRESSURE\t\${stringTableHBWeatherAirPressure}"
 if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|AIR_PRESSURE"`" ]; then
+    echo -e $stringtable_deInsert >> $stringtable_deFile
+fi
+
+stringtable_deInsert="HBWEATHER|CO2_CALIB_REF\t\${stringTableHBWeatherCo2CalibRef}"
+if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|CO2_CALIB_REF"`" ]; then
+    echo -e $stringtable_deInsert >> $stringtable_deFile
+fi
+
+stringtable_deInsert="HBWEATHER|CO2_LEVEL_AMBER\t\${stringTableHBWeatherCo2LevelAmber}"
+if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|CO2_LEVEL_AMBER"`" ]; then
+    echo -e $stringtable_deInsert >> $stringtable_deFile
+fi
+
+stringtable_deInsert="HBWEATHER|CO2_LEVEL_RED\t\${stringTableHBWeatherCo2LevelRed}"
+if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|CO2_LEVEL_RED"`" ]; then
     echo -e $stringtable_deInsert >> $stringtable_deFile
 fi
 
@@ -67,6 +110,21 @@ if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherAirPressure\"`" ]; 
 	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
 fi
 
+translate_deInsert="\n    \"stringTableHBWeatherCo2CalibRef\" : \"Kalibrierungswert\","
+if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherCo2CalibRef\"`" ]; then
+	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
+fi
+
+translate_deInsert="\n    \"stringTableHBWeatherCo2LevelAmber\" : \"Ampelschwelle Gelb\","
+if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherCo2LevelAmber\"`" ]; then
+	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
+fi
+
+translate_deInsert="\n    \"stringTableHBWeatherCo2LevelRed\" : \"Ampelschwelle Rot\","
+if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherCo2LevelRed\"`" ]; then
+	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
+fi
+
 #------------------------------------------------------------------------------
 ### Edit English translate.lang.stringtable.js ###
 translate_enFile="/www/webui/js/lang/en/translate.lang.stringtable.js"
@@ -80,4 +138,19 @@ fi
 translate_enInsert="\n    \"stringTableHBWeatherAirPressure\" : \"Air Pressure\","
 if [ -z "`cat $translate_enFile | grep \"stringTableHBWeatherAirPressure\"`" ]; then
 	sed -i "s/\($translate_enSearch\)/\1$translate_enInsert/g" $translate_enFile
+fi
+
+translate_enInsert="\n    \"stringTableHBWeatherCo2CalibRef\" : \"Calibration Value\","
+if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherCo2CalibRef\"`" ]; then
+	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
+fi
+
+translate_enInsert="\n    \"stringTableHBWeatherCo2LevelAmber\" : \"Traffic Light Level Amber\","
+if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherCo2LevelAmber\"`" ]; then
+	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
+fi
+
+translate_enInsert="\n    \"stringTableHBWeatherCo2LevelRed\" : \"Traffic Light Level Red\","
+if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherCo2LevelRed\"`" ]; then
+	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
 fi

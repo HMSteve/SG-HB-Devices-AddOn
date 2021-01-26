@@ -27,6 +27,15 @@ if [ "`cat $webuiFile | grep \"'$DEVICE'\"`" ]; then
         sed -i "/\('$DEVICE'\)/d" $webuiFile
 fi
 
+# remove channel params
+webuiSearch="HBWEATHER|CO2_CALIB_REF"
+sed -i "/\($webuiSearch\)/d" $webuiFile
+
+webuiSearch="HBWEATHER|CO2_LEVEL_AMBER"
+sed -i "/\($webuiSearch\)/d" $webuiFile
+
+webuiSearch="HBWEATHER|CO2_LEVEL_RED"
+sed -i "/\($webuiSearch\)/d" $webuiFile
 
 #------------------------------------------------------------------------------
 ### undo stringtable_de.txt changes
@@ -36,6 +45,15 @@ stringtable_deSearch="HBWEATHER|CO2"
 sed -i "/\($stringtable_deSearch\)/d" $stringtable_deFile
 
 stringtable_deSearch="HBWEATHER|AIR_PRESSURE"
+sed -i "/\($stringtable_deSearch\)/d" $stringtable_deFile
+
+stringtable_deSearch="HBWEATHER|CO2_CALIB_REF"
+sed -i "/\($stringtable_deSearch\)/d" $stringtable_deFile
+
+stringtable_deSearch="HBWEATHER|CO2_LEVEL_AMBER"
+sed -i "/\($stringtable_deSearch\)/d" $stringtable_deFile
+
+stringtable_deSearch="HBWEATHER|CO2_LEVEL_RED"
 sed -i "/\($stringtable_deSearch\)/d" $stringtable_deFile
 
 #------------------------------------------------------------------------------
@@ -48,6 +66,15 @@ sed -i "/\(${translate_deSearch}\)/d" $translate_deFile
 translate_deSearch="stringTableHBWeatherAirPressure"
 sed -i "/\(${translate_deSearch}\)/d" $translate_deFile
 
+translate_deSearch="stringTableHBWeatherCo2CalibRef"
+sed -i "/\(${translate_deSearch}\)/d" $translate_deFile
+
+translate_deSearch="stringTableHBWeatherCo2LevelAmber"
+sed -i "/\(${translate_deSearch}\)/d" $translate_deFile
+
+translate_deSearch="stringTableHBWeatherCo2LevelRed"
+sed -i "/\(${translate_deSearch}\)/d" $translate_deFile
+
 #------------------------------------------------------------------------------
 ### undo English translate.lang.stringtable.js changes
 translate_enFile="/www/webui/js/lang/en/translate.lang.stringtable.js"
@@ -56,6 +83,15 @@ translate_enSearch="stringTableHBWeatherCO2"
 sed -i "/\(${translate_enSearch}\)/d" $translate_enFile
 
 translate_enSearch="stringTableHBWeatherAirPressure"
+sed -i "/\(${translate_enSearch}\)/d" $translate_enFile
+
+translate_enSearch="stringTableHBWeatherCo2CalibRef"
+sed -i "/\(${translate_enSearch}\)/d" $translate_enFile
+
+translate_enSearch="stringTableHBWeatherCo2LevelAmber"
+sed -i "/\(${translate_enSearch}\)/d" $translate_enFile
+
+translate_enSearch="stringTableHBWeatherCo2LevelRed"
 sed -i "/\(${translate_enSearch}\)/d" $translate_enFile
 
 #------------------------------------------------------------------------------
