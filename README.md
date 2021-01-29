@@ -15,8 +15,11 @@ Das AddOn dient der Buendelung der CCU3-Unterstuetzung meiner HB-Geraete, bislan
 
 ## Change Log
 
+- 1.24 - 29.01.2021
+  - HB-UNI-Sen-CO2: Konfigurationsparameter zum Abschalten der gruenen Ampel eingefuegt
+
 - 1.23 - 22.01.2021
-  - HB-UNI-Sen-CO2: Konfigurationparameter fuer Ampel-LED und Sensor-Kalibrierung
+  - HB-UNI-Sen-CO2: Konfigurationsparameter fuer Ampel-LED und Sensor-Kalibrierung
 
 - 1.22 - 22.11.2020
   - HB-UNI-Sen-CO2: Batteriespannung auf zwei Nachkommastellen erweitert, um NiMH-Akkus genauer einzuschaetzen
@@ -34,4 +37,4 @@ Das AddOn dient der Buendelung der CCU3-Unterstuetzung meiner HB-Geraete, bislan
 
 - 1.00 - 30.09.2020
   - initiale Version
-  - Das Addon lehnt sich sehr stark an das HB-TM-Devices-AddOn von Tom an und wuerde ohne seine und die Arbeiten von J�r�me nicht existieren - Danke an die beiden!
+  - Das Addon lehnt sich sehr stark an das HB-TM-Devices-AddOn von Tom an und wuerde ohne seine und die Arbeiten von Jerome nicht existieren - Danke an die beiden!
