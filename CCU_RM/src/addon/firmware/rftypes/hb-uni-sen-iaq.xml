@@ -70,7 +70,7 @@
         </parameter>
       </paramset>
     </channel>
-    <channel index="1" type="WEATHER" autoregister="true">
+    <channel index="1" type="HBWEATHER" autoregister="true">
       <link_roles>
         <source name="WEATHER_TH" />
       </link_roles>

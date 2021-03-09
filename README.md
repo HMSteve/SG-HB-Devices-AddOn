@@ -15,6 +15,9 @@ Das AddOn dient der Buendelung der CCU3-Unterstuetzung meiner HB-Geraete, bislan
 
 ## Change Log
 
+- 1.25 -09.03.2021
+  - HB-UNI-Sen-IAQ: Channel Type in XML korrigiert
+
 - 1.24 - 29.01.2021
   - HB-UNI-Sen-CO2: Konfigurationsparameter zum Abschalten der gruenen Ampel eingefuegt
 
