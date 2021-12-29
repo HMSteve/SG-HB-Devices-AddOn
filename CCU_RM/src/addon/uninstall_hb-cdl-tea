@@ -1,0 +1,52 @@
+#!/bin/sh
+
+#------------------------------------------------------------------------------
+# in der WebUI angezeigter stringTableHBWeatherAirPressuretetyp, muss identisch sein mit dem Firmware-XML-Tag: <type name="HB-UNI-Sen-TH" id="HB-UNI-Sen-TH">
+DEVICE="HB-CDL-TEA"
+# in der WebUI angezeigte Geraetebeschreibung
+DEVICE_DESC="Tea Candle with Flicker LED"
+# Name der Piktogramme, bestehend aus xx.png bzw. xx_thumb.png
+DEVICE_IMG=hb-cdl-tea.png
+DEVICE_THUMB=hb-cdl-tea_thumb.png
+#Name des xml files
+FIRMWARE_FILE=/firmware/rftypes/hb-cdl-tea.xml
+
+#------------------------------------------------------------------------------
+# Undo DEVDB.tcl changes
+devdescrFile="/www/config/devdescr/DEVDB.tcl"
+devdescrSearch="$DEVICE {{50 \/config\/img\/devices\/50\/$DEVICE_THUMB} {250 \/config\/img\/devices\/250\/$DEVICE_IMG}} "
+
+if [ "`cat $devdescrFile | grep \"$DEVICE \"`" ]; then
+        sed -i "s/\($devdescrSearch\)//g" $devdescrFile
+fi
+
+#------------------------------------------------------------------------------
+# Undo webui.js changes
+webuiFile="/www/webui/webui.js"
+if [ "`cat $webuiFile | grep \"'$DEVICE'\"`" ]; then
+        sed -i "/\('$DEVICE'\)/d" $webuiFile
+fi
+
+# remove channel params
+# none
+
+#------------------------------------------------------------------------------
+### undo stringtable_de.txt changes
+# none
+
+#------------------------------------------------------------------------------
+### undo German translate.lang.stringtable.js changes
+# none
+
+#------------------------------------------------------------------------------
+### undo English translate.lang.stringtable.js changes
+# none
+
+#------------------------------------------------------------------------------
+# remove device_xml links
+rm -f $FIRMWARE_FILE
+
+#------------------------------------------------------------------------------
+# remove image files
+rm -f /www/config/img/devices/250/$DEVICE_IMG
+rm -f /www/config/img/devices/50/$DEVICE_THUMB
