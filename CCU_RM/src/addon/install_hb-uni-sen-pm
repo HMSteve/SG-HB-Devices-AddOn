@@ -1,0 +1,178 @@
+#!/bin/sh
+
+#------------------------------------------------------------------------------
+# in der WebUI angezeigter Ger�tetyp, muss identisch sein mit dem Firmware-XML-Tag: <type name="HB-UNI-Sen-TH" id="HB-UNI-Sen-TH">
+DEVICE="HB-UNI-Sen-PM"
+# in der WebUI angezeigte Ger�tebeschreibung
+DEVICE_DESC="Feinstaub-Sensor"
+# Name der Piktogramme, bestehend aus xx.png bzw. xx_thumb.png
+DEVICE_IMG=hb-uni-sen-pm.png
+DEVICE_THUMB=hb-uni-sen-pm_thumb.png
+
+#------------------------------------------------------------------------------
+# Edit DEVDB.tcl
+devdescrFile="/www/config/devdescr/DEVDB.tcl"
+devdescrSearch="array[[:space:]]*set[[:space:]]*DEV_PATHS[[:space:]]*{"
+
+devdescrInsert="$DEVICE {{50 \/config\/img\/devices\/50\/$DEVICE_THUMB} {250 \/config\/img\/devices\/250\/$DEVICE_IMG}} "
+
+if [ -z "`cat $devdescrFile | grep \"$DEVICE \"`" ]; then
+	sed -i "s/\($devdescrSearch\)/\1$devdescrInsert/g" $devdescrFile
+fi
+
+#------------------------------------------------------------------------------
+# Edit webui.js
+webuiFile="/www/webui/webui.js"
+
+webuiSearch="DEV_HIGHLIGHT[[:space:]]*=[[:space:]]*new Array();"
+
+webuiInsert="\n"
+webuiInsert="${webuiInsert}DEV_HIGHLIGHT['$DEVICE'] = new Object();\n"
+webuiInsert="${webuiInsert}DEV_LIST.push('$DEVICE');\n"
+webuiInsert="${webuiInsert}DEV_DESCRIPTION['$DEVICE']='$DEVICE_DESC';\n"
+webuiInsert="${webuiInsert}DEV_PATHS['$DEVICE'] = new Object();\n"
+webuiInsert="${webuiInsert}DEV_PATHS['$DEVICE']['50'] = '\/config\/img\/devices\/50\/$DEVICE_THUMB';\n"
+webuiInsert="${webuiInsert}DEV_PATHS['$DEVICE']['250'] = '\/config\/img\/devices\/250\/$DEVICE_IMG';"
+
+if [ -z "`cat $webuiFile | grep \"'$DEVICE'\"`" ]; then
+	sed -i "s/\($webuiSearch\)/\1$webuiInsert/g" $webuiFile
+fi
+
+#------------------------------------------------------------------------------
+### Edit stringtable_de.txt ###
+stringtable_deFile="/www/config/stringtable_de.txt"
+
+stringtable_deInsert="HBWEATHER|PM_UPTODATE\t\${stringTableHBWeatherPM_UPTODATE}"
+if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|PM_UPTODATE"`" ]; then
+    echo -e $stringtable_deInsert >> $stringtable_deFile
+fi
+
+stringtable_deInsert="HBWEATHER|PM_UPTODATE=FALSE\t\${stringTableHBWeatherPM_UPTODATEfalse}"
+if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|PM_UPTODATEfalse"`" ]; then
+    echo -e $stringtable_deInsert >> $stringtable_deFile
+fi
+
+stringtable_deInsert="HBWEATHER|PM_UPTODATE=TRUE\t\${stringTableHBWeatherPM_UPTODATEtrue}"
+if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|PM_UPTODATEtrue"`" ]; then
+    echo -e $stringtable_deInsert >> $stringtable_deFile
+fi
+
+stringtable_deInsert="HBWEATHER|PM_1P0\t\${stringTableHBWeatherPM_1P0}"
+if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|PM_1P0"`" ]; then
+    echo -e $stringtable_deInsert >> $stringtable_deFile
+fi
+
+stringtable_deInsert="HBWEATHER|PM_2P5\t\${stringTableHBWeatherPM_2P5}"
+if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|PM_2P5"`" ]; then
+    echo -e $stringtable_deInsert >> $stringtable_deFile
+fi
+
+stringtable_deInsert="HBWEATHER|PM_4P0\t\${stringTableHBWeatherPM_4P0}"
+if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|PM_4P0"`" ]; then
+    echo -e $stringtable_deInsert >> $stringtable_deFile
+fi
+
+stringtable_deInsert="HBWEATHER|PM_10P0\t\${stringTableHBWeatherPM_10P0}"
+if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|PM_10P0"`" ]; then
+    echo -e $stringtable_deInsert >> $stringtable_deFile
+fi
+
+stringtable_deInsert="HBWEATHER|NC_0P5\t\${stringTableHBWeatherNC_0P5}"
+if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|NC_0P5"`" ]; then
+    echo -e $stringtable_deInsert >> $stringtable_deFile
+fi
+
+stringtable_deInsert="HBWEATHER|NC_1P0\t\${stringTableHBWeatherNC_1P0}"
+if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|NC_1P0"`" ]; then
+    echo -e $stringtable_deInsert >> $stringtable_deFile
+fi
+
+stringtable_deInsert="HBWEATHER|NC_2P5\t\${stringTableHBWeatherNC_2P5}"
+if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|NC_2P5"`" ]; then
+    echo -e $stringtable_deInsert >> $stringtable_deFile
+fi
+
+stringtable_deInsert="HBWEATHER|NC_4P0\t\${stringTableHBWeatherNC_4P0}"
+if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|NC_4P0"`" ]; then
+    echo -e $stringtable_deInsert >> $stringtable_deFile
+fi
+
+stringtable_deInsert="HBWEATHER|NC_10P0\t\${stringTableHBWeatherNC_10P0}"
+if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|NC10P0"`" ]; then
+    echo -e $stringtable_deInsert >> $stringtable_deFile
+fi
+
+stringtable_deInsert="HBWEATHER|AVG_PARTICLE_SIZE\t\${stringTableHBWeatherAvgParticleSize}"
+if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|AVG_PARTICLE_SIZE"`" ]; then
+    echo -e $stringtable_deInsert >> $stringtable_deFile
+fi
+
+#------------------------------------------------------------------------------
+### Edit German translate.lang.stringtable.js ###
+translate_deFile="/www/webui/js/lang/de/translate.lang.stringtable.js"
+translate_deSearch="\"dummy\" : \"\","
+
+translate_deInsert="\n    \"stringTableHBWeatherPM_UPTODATE\" : \"Feinstaubdaten\","
+if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherPM_UPTODATE\"`" ]; then
+	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
+fi
+
+translate_deInsert="\n    \"stringTableHBWeatherPM_UPTODATEfalse\" : \"Feinstaubwerte NICHT aktuell\","
+if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherPM_UPTODATEflase\"`" ]; then
+	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
+fi
+
+translate_deInsert="\n    \"stringTableHBWeatherPM_UPTODATEtrue\" : \"Feinstaubwerte aktuell\","
+if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherPM_UPTODATEtrue\"`" ]; then
+	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
+fi
+
+translate_deInsert="\n    \"stringTableHBWeatherPM_1P0\" : \"PM 1\","
+if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherPM_1P0\"`" ]; then
+	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
+fi
+
+translate_deInsert="\n    \"stringTableHBWeatherPM_2P5\" : \"PM 2.5\","
+if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherPM_2P5\"`" ]; then
+	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
+fi
+
+translate_deInsert="\n    \"stringTableHBWeatherPM_4P0\" : \"PM 4\","
+if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherPM_4P0\"`" ]; then
+	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
+fi
+
+translate_deInsert="\n    \"stringTableHBWeatherPM_10P0\" : \"PM 10\","
+if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherPM_10P0\"`" ]; then
+	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
+fi
+
+translate_deInsert="\n    \"stringTableHBWeatherNC_0P5\" : \"Partikel < 0.5 %B5m\","
+if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherNC_0P5\"`" ]; then
+	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
+fi
+
+translate_deInsert="\n    \"stringTableHBWeatherNC_1P0\" : \"Partikel < 1 %B5m\","
+if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherNC_1P0\"`" ]; then
+	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
+fi
+
+translate_deInsert="\n    \"stringTableHBWeatherNC_2P5\" : \"Partikel < 2.5 %B5m\","
+if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherNC_2P5\"`" ]; then
+	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
+fi
+
+translate_deInsert="\n    \"stringTableHBWeatherNC_4P0\" : \"Partikel < 4 %B5m\","
+if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherNC_4P0\"`" ]; then
+	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
+fi
+
+translate_deInsert="\n    \"stringTableHBWeatherNC_10P0\" : \"Partikel < 10 %B5m\","
+if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherNC_10P0\"`" ]; then
+	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
+fi
+
+translate_deInsert="\n    \"stringTableHBWeatherAvgParticleSize\" : \"Mittlere Partikelgr%F6%DFe\","
+if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherAvgParticleSize\"`" ]; then
+	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
+fi
