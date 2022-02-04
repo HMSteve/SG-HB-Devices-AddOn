@@ -38,9 +38,26 @@ if [ -z "`cat $webuiFile | grep \"'$DEVICE'\"`" ]; then
 	sed -i "s/\($webuiSearch\)/\1$webuiInsert/g" $webuiFile
 fi
 
+# Insert channel config params
+webuiSearchBegin="elvST[[:space:]]*=[[:space:]]*new Array();"
+
+webuiInsertParam="HBWEATHER|SAMPLING_PERIOD"
+webuiInsertValue="stringTableHBWeatherSamplingPeriod"
+webuiInsert="\n"
+webuiInsert="${webuiInsert}elvST['$webuiInsertParam'] = '\${$webuiInsertValue}';"
+if [ -z "`cat $webuiFile | grep \"$webuiInsertParam\"`" ]; then
+	sed -i "s/\($webuiSearchBegin\)/\1$webuiInsert/g" $webuiFile
+fi
+
+
 #------------------------------------------------------------------------------
 ### Edit stringtable_de.txt ###
 stringtable_deFile="/www/config/stringtable_de.txt"
+
+stringtable_deInsert="HBWEATHER|SAMPLING_PERIOD\t\${stringTableHBWeatherSamplingPeriod}"
+if [ -z "`cat $stringtable_deFile | grep \"SAMPLING_PERIOD"`" ]; then
+    echo -e $stringtable_deInsert >> $stringtable_deFile
+fi
 
 stringtable_deInsert="HBWEATHER|PM_UPTODATE\t\${stringTableHBWeatherPM_UPTODATE}"
 if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|PM_UPTODATE"`" ]; then
@@ -111,6 +128,11 @@ fi
 ### Edit German translate.lang.stringtable.js ###
 translate_deFile="/www/webui/js/lang/de/translate.lang.stringtable.js"
 translate_deSearch="\"dummy\" : \"\","
+
+translate_deInsert="\n    \"stringTableHBWeatherSamplingPeriod\" : \"Messdauer\","
+if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherSamplingPeriod\"`" ]; then
+	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
+fi
 
 translate_deInsert="\n    \"stringTableHBWeatherPM_UPTODATE\" : \"Feinstaubdaten\","
 if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherPM_UPTODATE\"`" ]; then

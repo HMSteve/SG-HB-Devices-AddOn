@@ -69,7 +69,12 @@
       <link_roles>
         <source name="WEATHER_TH" />
       </link_roles>
-      <paramset type="MASTER" id="HB-UNI-Sen-PM_master" />
+      <paramset type="MASTER" id="HB-UNI-Sen-PM_master">
+        <parameter id="SAMPLING_PERIOD">
+          <logical type="integer" min="15" max="240" default="30" unit="s" />
+          <physical type="integer" interface="config" list="1" index="1" size="1" />
+        </parameter>
+      </paramset>
       <paramset type="VALUES" id="HB-UNI-Sen-PM_values">
         <parameter id="TEMPERATURE" operations="read,event">
           <logical type="float" min="-50.0" max="120.0" unit="°C" />
