@@ -2,14 +2,14 @@
 
 #------------------------------------------------------------------------------
 # in der WebUI angezeigter Gerätetyp, muss identisch sein mit dem Firmware-XML-Tag: <type name="HB-UNI-Sen-TH" id="HB-UNI-Sen-TH">
-DEVICE="HB-UNI-Sen-TH"
+DEVICE="HB-UNI-Sen-THP"
 # in der WebUI angezeigte Gerätebeschreibung
-DEVICE_DESC="Temperatur-Luftfeuchte-Sensor"
+DEVICE_DESC="Temperatur-Luftfeuchte-Luftdruck-Sensor"
 # Name der Piktogramme, bestehend aus xx.png bzw. xx_thumb.png
-DEVICE_IMG=hb-uni-sen-th.png
-DEVICE_THUMB=hb-uni-sen-th_thumb.png
+DEVICE_IMG=hb-uni-sen-thp.png
+DEVICE_THUMB=hb-uni-sen-thp_thumb.png
 #Name des xml files
-FIRMWARE_FILE=/firmware/rftypes/hb-uni-sen-th.xml
+FIRMWARE_FILE=/firmware/rftypes/hb-uni-sen-thp.xml
 
 #------------------------------------------------------------------------------
 # Undo DEVDB.tcl changes
@@ -26,30 +26,6 @@ webuiFile="/www/webui/webui.js"
 if [ "`cat $webuiFile | grep \"'$DEVICE'\"`" ]; then
         sed -i "/\('$DEVICE'\)/d" $webuiFile
 fi
-
-# remove channel/dev params
-webuiSearch="TRANSMIT_INTERVAL"
-sed -i "/\($webuiSearch\)/d" $webuiFile
-
-#------------------------------------------------------------------------------
-### undo stringtable_de.txt changes
-stringtable_deFile="/www/config/stringtable_de.txt"
-
-stringtable_deSearch="TRANSMIT_INTERVAL"
-sed -i "/\($stringtable_deSearch\)/d" $stringtable_deFile
-
-stringtable_deSearch="HBWEATHER|BATTERY_VOLTAGE"
-sed -i "/\($stringtable_deSearch\)/d" $stringtable_deFile
-
-#------------------------------------------------------------------------------
-### undo German translate.lang.stringtable.js changes
-translate_deFile="/www/webui/js/lang/de/translate.lang.stringtable.js"
-
-translate_deSearch="stringTableTransmitInterval"
-sed -i "/\(${translate_deSearch}\)/d" $translate_deFile
-
-translate_deSearch="stringTableHBWeatherBatteryVoltage"
-sed -i "/\(${translate_deSearch}\)/d" $translate_deFile
 
 #------------------------------------------------------------------------------
 # remove device_xml links

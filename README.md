@@ -12,10 +12,14 @@ Das AddOn dient der Buendelung der CCU3-Unterstuetzung meiner HB-Geraete.
 - [HB-UNI-Sen-IAQ](https://github.com/HMSteve/HB-UNI-Sen-IAQ)
 - [HB-UNI-Sen-CO2](https://github.com/HMSteve/HB-UNI-Sen-CO2)
 - HB-CDL-TEA (work in progress)
-- HB-UNI-Sen-PM (work in progress)
+- [HB-UNI-Sen-PM](https://github.com/HMSteve/HB-UNI-Sen-PM/tree/master)
+- [HB-UNI-Sen-THP](https://github.com/HMSteve/HB-UNI-Sen-THP/tree/master)
 
 
 ## Change Log
+- 1.2 - 20.02.2022
+  - HB-UNI-Sen-THP (Temperatur-Luftfeuchte-Luftdruck-Sensor) ergaenzt
+
 - 1.4 - 30.01.2022
   - HB-UNI-Sen-PM (Feinstaubsensor) ergaenzt
 
