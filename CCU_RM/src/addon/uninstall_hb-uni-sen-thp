@@ -27,6 +27,25 @@ if [ "`cat $webuiFile | grep \"'$DEVICE'\"`" ]; then
         sed -i "/\('$DEVICE'\)/d" $webuiFile
 fi
 
+# remove channel/dev params
+webuiSearch="ALTITUDE"
+sed -i "/\($webuiSearch\)/d" $webuiFile
+
+
+#------------------------------------------------------------------------------
+### undo stringtable_de.txt changes
+stringtable_deFile="/www/config/stringtable_de.txt"
+
+stringtable_deSearch="ALTITUDE"
+sed -i "/\($stringtable_deSearch\)/d" $stringtable_deFile
+
+#------------------------------------------------------------------------------
+### undo German translate.lang.stringtable.js changes
+translate_deFile="/www/webui/js/lang/de/translate.lang.stringtable.js"
+
+translate_deSearch="stringTableAltitude"
+sed -i "/\(${translate_deSearch}\)/d" $translate_deFile
+
 #------------------------------------------------------------------------------
 # remove device_xml links
 rm -f $FIRMWARE_FILE
