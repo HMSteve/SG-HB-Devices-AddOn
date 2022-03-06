@@ -108,7 +108,7 @@
             <event frame="WEATHER_EVENT" />
           </physical>
           <conversion type="float_integer_scale" factor="1000.0" />
-        </parameter>        
+        </parameter>
       </paramset>
       <paramset type="LINK" id="HB-UNI-Sen-TH_link"></paramset>
     </channel>
@@ -118,7 +118,7 @@
       <parameter type="integer" signed="true"  index="9"  size="1.7" param="TEMPERATURE" />
       <parameter type="integer" index="11" size="1.0" param="HUMIDITY" />
       <parameter type="integer" index="12" size="2.0" param="BATTERY_VOLTAGE" />
-      <parameter type="integer" index="14" size="2.0" param="DEWPOINT" />
+      <parameter type="integer" signed="true" index="14" size="2.0" param="DEWPOINT" />
     </frame>
   </frames>
   <paramset_defs></paramset_defs>

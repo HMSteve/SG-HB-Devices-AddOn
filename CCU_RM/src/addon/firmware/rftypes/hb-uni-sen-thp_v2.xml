@@ -133,7 +133,7 @@
       <parameter type="integer" index="11" size="1.0" param="HUMIDITY" />
       <parameter type="integer" index="12" size="2.0" param="AIR_PRESSURE" />
       <parameter type="integer" index="14" size="2.0" param="BATTERY_VOLTAGE" />
-      <parameter type="integer" index="16" size="2.0" param="DEWPOINT" />
+      <parameter type="integer" signed="true" index="16" size="2.0" param="DEWPOINT" />
     </frame>
   </frames>
   <paramset_defs></paramset_defs>
