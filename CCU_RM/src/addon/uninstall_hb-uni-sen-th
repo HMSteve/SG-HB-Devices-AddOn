@@ -41,6 +41,9 @@ sed -i "/\($stringtable_deSearch\)/d" $stringtable_deFile
 stringtable_deSearch="HBWEATHER|BATTERY_VOLTAGE"
 sed -i "/\($stringtable_deSearch\)/d" $stringtable_deFile
 
+stringtable_deSearch="HBWEATHER|DEWPOINT"
+sed -i "/\($stringtable_deSearch\)/d" $stringtable_deFile
+
 #------------------------------------------------------------------------------
 ### undo German translate.lang.stringtable.js changes
 translate_deFile="/www/webui/js/lang/de/translate.lang.stringtable.js"
@@ -49,6 +52,9 @@ translate_deSearch="stringTableTransmitInterval"
 sed -i "/\(${translate_deSearch}\)/d" $translate_deFile
 
 translate_deSearch="stringTableHBWeatherBatteryVoltage"
+sed -i "/\(${translate_deSearch}\)/d" $translate_deFile
+
+translate_deSearch="stringTableHBWeatherDewpoint"
 sed -i "/\(${translate_deSearch}\)/d" $translate_deFile
 
 #------------------------------------------------------------------------------

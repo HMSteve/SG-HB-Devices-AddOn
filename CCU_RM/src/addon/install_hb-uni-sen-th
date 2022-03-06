@@ -65,6 +65,10 @@ if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|BATTERY_VOLTAGE"`" ]; then
     echo -e $stringtable_deInsert >> $stringtable_deFile
 fi
 
+stringtable_deInsert="HBWEATHER|DEWPOINT\t\${stringTableHBWeatherDewpoint}"
+if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|DEWPOINT"`" ]; then
+    echo -e $stringtable_deInsert >> $stringtable_deFile
+fi
 
 #------------------------------------------------------------------------------
 ### Edit German translate.lang.stringtable.js ###
@@ -78,5 +82,10 @@ fi
 
 translate_deInsert="\n    \"stringTableHBWeatherBatteryVoltage\" : \"Batteriespannung\","
 if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherBatteryVoltage\"`" ]; then
+	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
+fi
+
+translate_deInsert="\n    \"stringTableHBWeatherDewpoint\" : \"Taupunkt\","
+if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherDewpoint\"`" ]; then
 	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
 fi

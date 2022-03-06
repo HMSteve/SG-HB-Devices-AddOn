@@ -17,7 +17,10 @@ Das AddOn dient der Buendelung der CCU3-Unterstuetzung meiner HB-Geraete.
 
 
 ## Change Log
-- 1.2 - 20.02.2022
+- 1.51 - 06.03.2022
+  - neue Firmwareversion 0x20 fuer HB-UNI-Sen-TH und HB-UNI-Sen-THP mit zusaetzlichem Datenpunkt "Taupunkt" 
+
+- 1.5 - 20.02.2022
   - HB-UNI-Sen-THP (Temperatur-Luftfeuchte-Luftdruck-Sensor) ergaenzt
 
 - 1.4 - 30.01.2022
