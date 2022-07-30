@@ -32,11 +32,17 @@ fi
 webuiSearch="HBWEATHER|SAMPLING_PERIOD"
 sed -i "/\($webuiSearch\)/d" $webuiFile
 
+webuiSearch="HBWEATHER|HUMIDITY_LIMIT"
+sed -i "/\($webuiSearch\)/d" $webuiFile
+
 #------------------------------------------------------------------------------
 ### undo stringtable_de.txt changes
 stringtable_deFile="/www/config/stringtable_de.txt"
 
 stringtable_deSearch="HBWEATHER|SAMPLING_PERIOD"
+sed -i "/\($stringtable_deSearch\)/d" $stringtable_deFile
+
+stringtable_deSearch="HBWEATHER|HUMIDITY_LIMIT"
 sed -i "/\($stringtable_deSearch\)/d" $stringtable_deFile
 
 stringtable_deSearch="HBWEATHER|PM_UPTODATE"
@@ -83,6 +89,9 @@ sed -i "/\($stringtable_deSearch\)/d" $stringtable_deFile
 translate_deFile="/www/webui/js/lang/de/translate.lang.stringtable.js"
 
 translate_deSearch="stringTableHBWeatherSamplingPeriod"
+sed -i "/\(${translate_deSearch}\)/d" $translate_deFile
+
+translate_deSearch="stringTableHBWeatherHumidityLimit"
 sed -i "/\(${translate_deSearch}\)/d" $translate_deFile
 
 translate_deSearch="stringTableHBWeatherPM_UPTODATE"

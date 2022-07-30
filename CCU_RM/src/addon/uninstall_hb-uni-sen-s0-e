@@ -1,0 +1,76 @@
+#!/bin/sh
+
+#------------------------------------------------------------------------------
+# in der WebUI angezeigter Gerätetyp, muss identisch sein mit dem Firmware-XML-Tag: <type name="HB-UNI-Sen-TH" id="HB-UNI-Sen-TH">
+DEVICE="HB-UNI-Sen-S0-E"
+# in der WebUI angezeigte Gerätebeschreibung
+DEVICE_DESC="S0 Energiezaehler"
+# Name der Piktogramme, bestehend aus xx.png bzw. xx_thumb.png
+DEVICE_IMG=hb-uni-sen-s0-e.png
+DEVICE_THUMB=hb-uni-sen-s0-e_thumb.png
+
+#Name des xml files
+FIRMWARE_FILE=/firmware/rftypes/hb-uni-sen-s0-e.xml
+
+#------------------------------------------------------------------------------
+# Undo DEVDB.tcl changes
+devdescrFile="/www/config/devdescr/DEVDB.tcl"
+devdescrSearch="$DEVICE {{50 \/config\/img\/devices\/50\/$DEVICE_THUMB} {250 \/config\/img\/devices\/250\/$DEVICE_IMG}} "
+
+if [ "`cat $devdescrFile | grep \"$DEVICE \"`" ]; then
+        sed -i "s/\($devdescrSearch\)//g" $devdescrFile
+fi
+
+#------------------------------------------------------------------------------
+# Undo webui.js changes
+webuiFile="/www/webui/webui.js"
+if [ "`cat $webuiFile | grep \"'$DEVICE'\"`" ]; then
+        sed -i "/\('$DEVICE'\)/d" $webuiFile
+fi
+
+# remove channel params
+webuiSearch="HBWEATHER|USE_OFFSET"
+sed -i "/\($webuiSearch\)/d" $webuiFile
+
+webuiSearch="HBWEATHER|WH_OFFSET"
+sed -i "/\($webuiSearch\)/d" $webuiFile
+
+#------------------------------------------------------------------------------
+# remove device_xml links
+rm -f $FIRMWARE_FILE
+
+#------------------------------------------------------------------------------
+# remove image files
+rm -f /www/config/img/devices/250/$DEVICE_IMG
+rm -f /www/config/img/devices/50/$DEVICE_THUMB
+
+### undo stringtable_de.txt changes
+stringtable_deFile="/www/config/stringtable_de.txt"
+
+stringtable_deSearch="HBWEATHER|E_ENERGY_COUNTER"
+sed -i "/\($stringtable_deSearch\)/d" $stringtable_deFile
+
+stringtable_deSearch="HBWEATHER|CURRENT_POWER"
+sed -i "/\($stringtable_deSearch\)/d" $stringtable_deFile
+
+stringtable_deSearch="HBWEATHER|USE_OFFSET"
+sed -i "/\($stringtable_deSearch\)/d" $stringtable_deFile
+
+stringtable_deSearch="HBWEATHER|WH_OFFSET"
+sed -i "/\($stringtable_deSearch\)/d" $stringtable_deFile
+
+#------------------------------------------------------------------------------
+### undo German translate.lang.stringtable.js changes
+translate_deFile="/www/webui/js/lang/de/translate.lang.stringtable.js"
+
+translate_deSearch="stringTableHBWeatherE_Energy_Counter"
+sed -i "/\(${translate_deSearch}\)/d" $translate_deFile
+
+translate_deSearch="stringTableHBWeatherCurrentPower"
+sed -i "/\(${translate_deSearch}\)/d" $translate_deFile
+
+translate_deSearch="stringTableHBWeatherUseOffset"
+sed -i "/\(${translate_deSearch}\)/d" $translate_deFile
+
+translate_deSearch="stringTableHBWeatherWhOffset"
+sed -i "/\(${translate_deSearch}\)/d" $translate_deFile

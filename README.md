@@ -14,11 +14,18 @@ Das AddOn dient der Buendelung der CCU3-Unterstuetzung meiner HB-Geraete.
 - HB-CDL-TEA (work in progress)
 - [HB-UNI-Sen-PM](https://github.com/HMSteve/HB-UNI-Sen-PM/tree/master)
 - [HB-UNI-Sen-THP](https://github.com/HMSteve/HB-UNI-Sen-THP/tree/master)
+- HB-UNI-Sen-S0-E (work in progress)
 
 
 ## Change Log
+- 1.61 - 30.07.2022
+  - neue Firmwareversion 0x11 fuer HB-UNI-Sen-PM: Konfigurationsparameter Luftfeuchtelimit ergaenzt
+
+- 1.6 - 12.06.2022
+  - HB-UNI-Sen-S0-E (S0-Energiezaehler) ergaenzt
+
 - 1.51 - 06.03.2022
-  - neue Firmwareversion 0x20 fuer HB-UNI-Sen-TH und HB-UNI-Sen-THP mit zusaetzlichem Datenpunkt "Taupunkt" 
+  - neue Firmwareversion 0x20 fuer HB-UNI-Sen-TH und HB-UNI-Sen-THP mit zusaetzlichem Datenpunkt "Taupunkt"
 
 - 1.5 - 20.02.2022
   - HB-UNI-Sen-THP (Temperatur-Luftfeuchte-Luftdruck-Sensor) ergaenzt
@@ -40,7 +47,6 @@ Das AddOn dient der Buendelung der CCU3-Unterstuetzung meiner HB-Geraete.
 
 - 1.22 - 22.11.2020
   - HB-UNI-Sen-CO2: Batteriespannung auf zwei Nachkommastellen erweitert, um NiMH-Akkus genauer einzuschaetzen
-
 
 - 1.21 - 08.11.2020
   - HB-UNI-Sen-CO2 um Datenpunkt Luftdruck und Config-Parameter Hoehe und Temperatur-Offset ergaenzt
