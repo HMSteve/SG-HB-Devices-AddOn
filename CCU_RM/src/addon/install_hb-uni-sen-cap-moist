@@ -1,0 +1,126 @@
+#!/bin/sh
+
+#------------------------------------------------------------------------------
+# in der WebUI angezeigter Gerätetyp, muss identisch sein mit dem Firmware-XML-Tag: <type name="HB-UNI-Sen-TH" id="HB-UNI-Sen-TH">
+DEVICE="HB-UNI-Sen-CAP-MOIST"
+# in der WebUI angezeigte Gerätebeschreibung
+DEVICE_DESC="Kapazitiver Bodenfeuchte-Sensor"
+# Name der Piktogramme, bestehend aus xx.png bzw. xx_thumb.png
+DEVICE_IMG=hb-uni-sen-cap-moist.png
+DEVICE_THUMB=hb-uni-sen-cap-moist_thumb.png
+
+
+#------------------------------------------------------------------------------
+# Edit DEVDB.tcl
+devdescrFile="/www/config/devdescr/DEVDB.tcl"
+devdescrSearch="array[[:space:]]*set[[:space:]]*DEV_PATHS[[:space:]]*{"
+
+devdescrInsert="$DEVICE {{50 \/config\/img\/devices\/50\/$DEVICE_THUMB} {250 \/config\/img\/devices\/250\/$DEVICE_IMG}} "
+
+
+if [ -z "`cat $devdescrFile | grep \"$DEVICE \"`" ]; then
+	sed -i "s/\($devdescrSearch\)/\1$devdescrInsert/g" $devdescrFile
+fi
+
+#------------------------------------------------------------------------------
+# Edit webui.js
+webuiFile="/www/webui/webui.js"
+webuiSearch="DEV_HIGHLIGHT[[:space:]]*=[[:space:]]*new Array();"
+
+webuiInsert="\n"
+webuiInsert="${webuiInsert}DEV_HIGHLIGHT['$DEVICE'] = new Object();\n"
+webuiInsert="${webuiInsert}DEV_LIST.push('$DEVICE');\n"
+webuiInsert="${webuiInsert}DEV_DESCRIPTION['$DEVICE']='$DEVICE_DESC';\n"
+webuiInsert="${webuiInsert}DEV_PATHS['$DEVICE'] = new Object();\n"
+webuiInsert="${webuiInsert}DEV_PATHS['$DEVICE']['50'] = '\/config\/img\/devices\/50\/$DEVICE_THUMB';\n"
+webuiInsert="${webuiInsert}DEV_PATHS['$DEVICE']['250'] = '\/config\/img\/devices\/250\/$DEVICE_IMG';"
+
+if [ -z "`cat $webuiFile | grep \"'$DEVICE'\"`" ]; then
+	sed -i "s/\($webuiSearch\)/\1$webuiInsert/g" $webuiFile
+fi
+
+# Insert channel config params
+webuiSearchBegin="elvST[[:space:]]*=[[:space:]]*new Array();"
+
+webuiInsertParam="TRANSMIT_INTERVAL"
+webuiInsertValue="stringTableTransmitInterval"
+webuiInsert="\n"
+webuiInsert="${webuiInsert}elvST['$webuiInsertParam'] = '\${$webuiInsertValue}';"
+if [ -z "`cat $webuiFile | grep \"$webuiInsertParam\"`" ]; then
+	sed -i "s/\($webuiSearchBegin\)/\1$webuiInsert/g" $webuiFile
+fi
+
+webuiInsertParam="CAP_MOIST_HIGH_VALUE"
+webuiInsertValue="stringTableHBWeatherCapMoistHighValue"
+webuiInsert="\n"
+webuiInsert="${webuiInsert}elvST['$webuiInsertParam'] = '\${$webuiInsertValue}';"
+if [ -z "`cat $webuiFile | grep \"$webuiInsertParam\"`" ]; then
+	sed -i "s/\($webuiSearchBegin\)/\1$webuiInsert/g" $webuiFile
+fi
+
+webuiInsertParam="CAP_MOIST_LOW_VALUE"
+webuiInsertValue="stringTableHBWeatherCapMoistLowValue"
+webuiInsert="\n"
+webuiInsert="${webuiInsert}elvST['$webuiInsertParam'] = '\${$webuiInsertValue}';"
+if [ -z "`cat $webuiFile | grep \"$webuiInsertParam\"`" ]; then
+	sed -i "s/\($webuiSearchBegin\)/\1$webuiInsert/g" $webuiFile
+fi
+
+#------------------------------------------------------------------------------
+### Edit stringtable_de.txt ###
+stringtable_deFile="/www/config/stringtable_de.txt"
+
+stringtable_deInsert="TRANSMIT_INTERVAL\t\${stringTableTransmitInterval}"
+if [ -z "`cat $stringtable_deFile | grep \"TRANSMIT_INTERVAL"`" ]; then
+    echo -e $stringtable_deInsert >> $stringtable_deFile
+fi
+
+stringtable_deInsert="HBWEATHER|BATTERY_VOLTAGE\t\${stringTableHBWeatherBatteryVoltage}"
+if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|BATTERY_VOLTAGE"`" ]; then
+    echo -e $stringtable_deInsert >> $stringtable_deFile
+fi
+
+stringtable_deInsert="HBWEATHER|CAP_MOIST_HIGH_VALUE\t\${stringTableHBWeatherCapMoistHighValue}"
+if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|CAP_MOIST_HIGH_VALUE"`" ]; then
+    echo -e $stringtable_deInsert >> $stringtable_deFile
+fi
+
+stringtable_deInsert="HBWEATHER|CAP_MOIST_LOW_VALUE\t\${stringTableHBWeatherCapMoistLowValue}"
+if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|CAP_MOIST_LOW_VALUE"`" ]; then
+    echo -e $stringtable_deInsert >> $stringtable_deFile
+fi
+
+stringtable_deInsert="HBWEATHER|MOISTURE\t\${stringTableHBWeatherMoisture}"
+if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|MOISTURE"`" ]; then
+    echo -e $stringtable_deInsert >> $stringtable_deFile
+fi
+
+#------------------------------------------------------------------------------
+### Edit German translate.lang.stringtable.js ###
+translate_deFile="/www/webui/js/lang/de/translate.lang.stringtable.js"
+translate_deSearch="\"dummy\" : \"\","
+
+translate_deInsert="\n    \"stringTableTransmitInterval\" : \"Sendeintervall\","
+if [ -z "`cat $translate_deFile | grep \"stringTableTransmitInterval\"`" ]; then
+	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
+fi
+
+translate_deInsert="\n    \"stringTableHBWeatherBatteryVoltage\" : \"Batteriespannung\","
+if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherBatteryVoltage\"`" ]; then
+	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
+fi
+
+translate_deInsert="\n    \"stringTableHBWeatherCapMoistHighValue\" : \"HIGH-Wert (Trocken)\","
+if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherCapMoistHighValue\"`" ]; then
+	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
+fi
+
+translate_deInsert="\n    \"stringTableHBWeatherCapMoistLowValue\" : \"LOW-Wert (Nass)\","
+if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherCapMoistLowValue\"`" ]; then
+	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
+fi
+
+translate_deInsert="\n    \"stringTableHBWeatherMoisture\" : \"Bodenfeuchte\","
+if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherMoisture\"`" ]; then
+	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
+fi

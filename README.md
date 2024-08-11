@@ -14,10 +14,14 @@ Das AddOn dient der Buendelung der CCU3-Unterstuetzung meiner HB-Geraete.
 - HB-CDL-TEA (work in progress)
 - [HB-UNI-Sen-PM](https://github.com/HMSteve/HB-UNI-Sen-PM/tree/master)
 - [HB-UNI-Sen-THP](https://github.com/HMSteve/HB-UNI-Sen-THP/tree/master)
-- HB-UNI-Sen-S0-E (work in progress)
+- [HB-UNI-Sen-S0-E](https://github.com/HMSteve/HM-ES-TX-WM)
+- HB-UNI-Sen-CAP-MOIST (work in progress)
 
 
 ## Change Log
+- 1.62 - 20.06.2024
+  - HB-UNI-SEN-CAP-MOIST (kapazitiver Bodenfeuchtesensor) ergaenzt
+
 - 1.61 - 30.07.2022
   - neue Firmwareversion 0x11 fuer HB-UNI-Sen-PM: Konfigurationsparameter Luftfeuchtelimit ergaenzt
 
