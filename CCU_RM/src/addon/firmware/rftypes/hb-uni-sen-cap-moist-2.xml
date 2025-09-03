@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <device version="2" rx_modes="CONFIG,WAKEUP,LAZY_CONFIG" cyclic_timeout="88200">
   <supported_types>
-    <type name="HB-UNI-Sen-CAP-MOIST" id="HB-UNI-Sen-CAP-MOIST" updatable="true">
+    <type name="HB-UNI-Sen-CAP-MOIST-2" id="HB-UNI-Sen-CAP-MOIST-2" updatable="true">
       <parameter index="9.0" size="1.0" cond_op="GE" const_value="10" />
       <parameter index="10.0" size="2.0" const_value="0xF826" />
     </type>

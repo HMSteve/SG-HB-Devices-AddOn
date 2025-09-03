@@ -2,14 +2,14 @@
 
 #------------------------------------------------------------------------------
 # in der WebUI angezeigter Gerätetyp, muss identisch sein mit dem Firmware-XML-Tag: <type name="HB-UNI-Sen-TH" id="HB-UNI-Sen-TH">
-DEVICE="HB-UNI-Sen-CAP-MOIST"
+DEVICE="HB-UNI-Sen-CAP-MOIST-2"
 # in der WebUI angezeigte Gerätebeschreibung
 DEVICE_DESC="Kapazitiver Bodenfeuchte-Sensor"
 # Name der Piktogramme, bestehend aus xx.png bzw. xx_thumb.png
-DEVICE_IMG=hb-uni-sen-cap-moist.png
-DEVICE_THUMB=hb-uni-sen-cap-moist_thumb.png
+DEVICE_IMG=hb-uni-sen-cap-moist-2.png
+DEVICE_THUMB=hb-uni-sen-cap-moist-2_thumb.png
 #Name des xml files
-FIRMWARE_FILE=/firmware/rftypes/hb-uni-sen-cap-moist.xml
+FIRMWARE_FILE=/firmware/rftypes/hb-uni-sen-cap-moist-2.xml
 
 #------------------------------------------------------------------------------
 # Undo DEVDB.tcl changes

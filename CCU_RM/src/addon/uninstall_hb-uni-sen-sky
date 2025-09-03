@@ -31,39 +31,39 @@ fi
 ### undo stringtable_de.txt changes
 stringtable_deFile="/www/config/stringtable_de.txt"
 
-stringtable_deSearch="HBWEATHER|SKY_TEMPERATURE"
+stringtable_deSearch="SKY_TEMPERATURE"
 sed -i "/\($stringtable_deSearch\)/d" $stringtable_deFile
-stringtable_deSearch="HBWEATHER|UV_INDEX"
+stringtable_deSearch="UV_INDEX"
 sed -i "/\($stringtable_deSearch\)/d" $stringtable_deFile
-stringtable_deSearch="HBWEATHER|LUX"
-sed -i "/\($stringtable_deSearch\)/d" $stringtable_deFile
-stringtable_deSearch="HBWEATHER|BATTERY_VOLTAGE"
+# stringtable_deSearch="HBWEATHER|LUX"
+# sed -i "/\($stringtable_deSearch\)/d" $stringtable_deFile
+stringtable_deSearch="BATTERY_VOLTAGE"
 sed -i "/\($stringtable_deSearch\)/d" $stringtable_deFile
 
 #------------------------------------------------------------------------------
 ### undo German translate.lang.stringtable.js changes
 translate_deFile="/www/webui/js/lang/de/translate.lang.stringtable.js"
 
-translate_deSearch="stringTableHBWeatherSkyTemperature"
+translate_deSearch="stringTableSkyTemperature"
 sed -i "/\(${translate_deSearch}\)/d" $translate_deFile
-translate_deSearch="stringTableHBWeatherUvIndex"
+translate_deSearch="stringTableUvIndex"
 sed -i "/\(${translate_deSearch}\)/d" $translate_deFile
-translate_deSearch="stringTableHBWeatherLux"
-sed -i "/\(${translate_deSearch}\)/d" $translate_deFile
-translate_deSearch="stringTableHBWeatherBatteryVoltage"
+# translate_deSearch="stringTableHBWeatherLux"
+# sed -i "/\(${translate_deSearch}\)/d" $translate_deFile
+translate_deSearch="stringTableBatteryVoltage"
 sed -i "/\(${translate_deSearch}\)/d" $translate_deFile
 
 #------------------------------------------------------------------------------
 ### undo English translate.lang.stringtable.js changes
 translate_enFile="/www/webui/js/lang/en/translate.lang.stringtable.js"
 
-translate_enSearch="stringTableHBWeatherSkyTemperature"
+translate_enSearch="stringTableSkyTemperature"
 sed -i "/\(${translate_enSearch}\)/d" $translate_enFile
-translate_enSearch="stringTableHBWeatherUvIndex"
+translate_enSearch="stringTableUvIndex"
 sed -i "/\(${translate_enSearch}\)/d" $translate_enFile
-translate_enSearch="stringTableHBWeatherLux"
-sed -i "/\(${translate_enSearch}\)/d" $translate_enFile
-translate_enSearch="stringTableHBWeatherBatteryVoltage"
+# translate_enSearch="stringTableHBWeatherLux"
+# sed -i "/\(${translate_enSearch}\)/d" $translate_enFile
+translate_enSearch="stringTableBatteryVoltage"
 sed -i "/\(${translate_enSearch}\)/d" $translate_enFile
 
 #------------------------------------------------------------------------------
