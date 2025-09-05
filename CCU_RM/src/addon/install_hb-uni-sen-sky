@@ -43,23 +43,23 @@ fi
 ### Edit stringtable_de.txt ###
 stringtable_deFile="/www/config/stringtable_de.txt"
 
-stringtable_deInsert="HBWEATHER|SKY_TEMPERATURE\t\${stringTableHBWeatherSkyTemperature}"
-if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|SKY_TEMPERATURE"`" ]; then
+stringtable_deInsert="SKY_TEMPERATURE\t\${stringTableSkyTemperature}"
+if [ -z "`cat $stringtable_deFile | grep \"SKY_TEMPERATURE"`" ]; then
     echo -e $stringtable_deInsert >> $stringtable_deFile
 fi
 
-stringtable_deInsert="HBWEATHER|UV_INDEX\t\${stringTableHBWeatherUvIndex}"
-if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|UV_INDEX"`" ]; then
+stringtable_deInsert="UV_INDEX\t\${stringTableUvIndex}"
+if [ -z "`cat $stringtable_deFile | grep \"UV_INDEX"`" ]; then
     echo -e $stringtable_deInsert >> $stringtable_deFile
 fi
 
-stringtable_deInsert="HBWEATHER|LUX\t\${stringTableHBWeatherLux}"
-if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|LUX"`" ]; then
-    echo -e $stringtable_deInsert >> $stringtable_deFile
-fi
+# stringtable_deInsert="HBWEATHER|LUX\t\${stringTableHBWeatherLux}"
+# if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|LUX"`" ]; then
+#     echo -e $stringtable_deInsert >> $stringtable_deFile
+# fi
 
-stringtable_deInsert="HBWEATHER|BATTERY_VOLTAGE\t\${stringTableHBWeatherBatteryVoltage}"
-if [ -z "`cat $stringtable_deFile | grep \"HBWEATHER|BATTERY_VOLTAGE"`" ]; then
+stringtable_deInsert="BATTERY_VOLTAGE\t\${stringTableBatteryVoltage}"
+if [ -z "`cat $stringtable_deFile | grep \"BATTERY_VOLTAGE"`" ]; then
     echo -e $stringtable_deInsert >> $stringtable_deFile
 fi
 
@@ -68,23 +68,23 @@ fi
 translate_deFile="/www/webui/js/lang/de/translate.lang.stringtable.js"
 translate_deSearch="\"dummy\" : \"\","
 
-translate_deInsert="\n    \"stringTableHBWeatherSkyTemperature\" : \"Himmelstemperatur\","
-if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherSkyTemperature\"`" ]; then
+translate_deInsert="\n    \"stringTableSkyTemperature\" : \"Himmelstemperatur\","
+if [ -z "`cat $translate_deFile | grep \"stringTableSkyTemperature\"`" ]; then
 	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
 fi
 
-translate_deInsert="\n    \"stringTableHBWeatherUvIndex\" : \"UV-Index\","
-if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherUvIndex\"`" ]; then
+translate_deInsert="\n    \"stringTableUvIndex\" : \"UV-Index\","
+if [ -z "`cat $translate_deFile | grep \"stringTableUvIndex\"`" ]; then
 	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
 fi
 
-translate_deInsert="\n    \"stringTableHBWeatherLux\" : \"Helligkeit\","
-if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherLux\"`" ]; then
-	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
-fi
+# translate_deInsert="\n    \"stringTableHBWeatherLux\" : \"Helligkeit\","
+# if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherLux\"`" ]; then
+# 	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
+# fi
 
-translate_deInsert="\n    \"stringTableHBWeatherBatteryVoltage\" : \"Batteriespannung\","
-if [ -z "`cat $translate_deFile | grep \"stringTableHBWeatherBatteryVoltage\"`" ]; then
+translate_deInsert="\n    \"stringTableBatteryVoltage\" : \"Batteriespannung\","
+if [ -z "`cat $translate_deFile | grep \"stringTableBatteryVoltage\"`" ]; then
 	sed -i "s/\($translate_deSearch\)/\1$translate_deInsert/g" $translate_deFile
 fi
 
@@ -93,22 +93,22 @@ fi
 translate_enFile="/www/webui/js/lang/en/translate.lang.stringtable.js"
 translate_enSearch="\"dummy\" : \"\","
 
-translate_enInsert="\n    \"stringTableHBWeatherSkyTemperature\" : \"Sky Temperature\","
-if [ -z "`cat $translate_enFile | grep \"stringTableHBWeatherSkyTemperature\"`" ]; then
+translate_enInsert="\n    \"stringTableHSkyTemperature\" : \"Sky Temperature\","
+if [ -z "`cat $translate_enFile | grep \"stringTableSkyTemperature\"`" ]; then
 	sed -i "s/\($translate_enSearch\)/\1$translate_enInsert/g" $translate_enFile
 fi
 
-translate_enInsert="\n    \"stringTableHBWeatherUvIndex\" : \"UV Index\","
-if [ -z "`cat $translate_enFile | grep \"stringTableHBWeatherUvIndex\"`" ]; then
+translate_enInsert="\n    \"stringTableUvIndex\" : \"UV Index\","
+if [ -z "`cat $translate_enFile | grep \"stringTableUvIndex\"`" ]; then
 	sed -i "s/\($translate_enSearch\)/\1$translate_enInsert/g" $translate_enFile
 fi
 
-translate_enInsert="\n    \"stringTableHBWeatherLux\" : \"Brightness\","
-if [ -z "`cat $translate_enFile | grep \"stringTableHBWeatherLux\"`" ]; then
-	sed -i "s/\($translate_enSearch\)/\1$translate_enInsert/g" $translate_enFile
-fi
+# translate_enInsert="\n    \"stringTableHBWeatherLux\" : \"Brightness\","
+# if [ -z "`cat $translate_enFile | grep \"stringTableHBWeatherLux\"`" ]; then
+# 	sed -i "s/\($translate_enSearch\)/\1$translate_enInsert/g" $translate_enFile
+# fi
 
-translate_enInsert="\n    \"stringTableHBWeatherBatteryVoltage\" : \"Battery Voltage\","
-if [ -z "`cat $translate_enFile | grep \"stringTableHBWeatherBatteryVoltage\"`" ]; then
+translate_enInsert="\n    \"stringTableBatteryVoltage\" : \"Battery Voltage\","
+if [ -z "`cat $translate_enFile | grep \"stringTableBatteryVoltage\"`" ]; then
 	sed -i "s/\($translate_enSearch\)/\1$translate_enInsert/g" $translate_enFile
 fi
