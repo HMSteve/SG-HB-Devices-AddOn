@@ -7,14 +7,29 @@
     </type>
   </supported_types>
   <paramset type="MASTER" id="hm_uni_sen_dev_master">
+    <parameter id="DEVICE_LED_MODE">
+      <logical type="option">
+        <option id="OFF" />
+        <option id="ON" default="true" />
+      </logical>
+      <physical type="integer" interface="config" list="0" index="5.6" size="0.2" />
+      <conversion type="integer_integer_map">
+        <value_map device_value="0x00" parameter_value="0" />
+        <value_map device_value="0x01" parameter_value="1" />
+      </conversion>
+    </parameter>
     <parameter id="LOW_BAT_LIMIT">
       <logical type="float" min="0.5" max="5.0" default="2.2" unit="V" />
       <physical type="integer" interface="config" list="0" index="18" size="1" />
       <conversion type="float_integer_scale" factor="10" />
     </parameter>
-    <parameter id="HBWEA_TRANSMIT_INTERVAL">
-      <logical type="integer" min="10" max="600" unit="s" default="180" />
-      <physical type="integer" interface="config" list="0" index="33.0" size="2" />
+    <parameter id="TRANSMIT_DEV_TRY_MAX">
+      <logical type="integer" min="1" max="10" default="6" />
+      <physical type="integer" interface="config" list="0" index="20" size="1" />
+    </parameter>
+    <parameter id="TRANSMIT_INTERVAL">
+      <logical type="integer" min="10" max="3600" default="60" unit="s" />
+      <physical type="integer" interface="config" list="0" index="32" size="2" />
     </parameter>
   </paramset>
   <channels>
@@ -79,9 +94,9 @@
          <field id="AutoconfRoles" value="WEATHER" />
         </description>
        </parameter>
-       <parameter id="BATTERY_VOLTAGE" operations="read,event">
+       <parameter id="HBWEA_BATTERY_VOLTAGE" operations="read,event">
         <logical type="float" min="0.5" max="5.5" unit="V"/>
-        <physical type="integer" interface="command" value_id="BATTERY_VOLTAGE">
+        <physical type="integer" interface="command" value_id="HBWEA_BATTERY_VOLTAGE">
          <event frame="MEASURE_EV_BAT"/>
         </physical>
         <conversion type="float_integer_scale" factor="10.0"/>
@@ -117,7 +132,7 @@
       </frame>
       <frame id="MEASURE_EV_BAT" direction="from_device" event="true" type="0x53" fixed_channel="*">
          <parameter type="integer" index="9.7" size="0.1" param="LOWBAT" />
-         <parameter type="integer" index="22.0" size="1.0" param="BATTERY_VOLTAGE" />
+         <parameter type="integer" index="22.0" size="1.0" param="HBWEA_BATTERY_VOLTAGE" />
       </frame>
   </frames>
   <paramset_defs></paramset_defs>
