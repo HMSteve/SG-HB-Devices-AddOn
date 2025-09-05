@@ -15,14 +15,14 @@ Das AddOn dient der Buendelung der CCU3-Unterstuetzung meiner HB-Geraete.
 - [HB-UNI-Sen-PM](https://github.com/HMSteve/HB-UNI-Sen-PM/tree/master)
 - [HB-UNI-Sen-THP](https://github.com/HMSteve/HB-UNI-Sen-THP/tree/master)
 - HB-UNI-Sen-S0-E (work in progress)
-- HB-UNI-Sen-CAP-MOIST (work in progress)
+- HB-UNI-Sen-CAP-MOIST-2 (work in progress)
 - HB-UNI-Sen-TEMP-DS18B20-2 (work in progress)
 
 
 ## Change Log
-- 1.7 - 03.09.2025
+- 1.7 - 05.09.2025
   - HB-UNI-Sen-TEMP-DS18B20-2 (1- bis 8-fach Temperatursensor mit zusaetzlicher Batteriespannungsanzeige) ergaenzt
-  - HB-UNI-SEN-CAP-MOIST (kapazitiver Bodenfeuchtesensor) ergaenzt
+  - HB-UNI-SEN-CAP-MOIST-2 (kapazitiver Bodenfeuchtesensor) ergaenzt
 
 - 1.61 - 30.07.2022
   - neue Firmwareversion 0x11 fuer HB-UNI-Sen-PM: Konfigurationsparameter Luftfeuchtelimit ergaenzt
