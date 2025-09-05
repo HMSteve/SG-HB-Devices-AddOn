@@ -99,7 +99,7 @@
         <physical type="integer" interface="command" value_id="HBWEA_BATTERY_VOLTAGE">
          <event frame="MEASURE_EV_BAT"/>
         </physical>
-        <conversion type="float_integer_scale" factor="10.0"/>
+        <conversion type="float_integer_scale" factor="1000.0"/>
        </parameter>
       </paramset>
       <paramset type="LINK" id="HB-UNI-Sen-TEMP-DS18B20_link"></paramset>
@@ -132,7 +132,7 @@
       </frame>
       <frame id="MEASURE_EV_BAT" direction="from_device" event="true" type="0x53" fixed_channel="*">
          <parameter type="integer" index="9.7" size="0.1" param="LOWBAT" />
-         <parameter type="integer" index="22.0" size="1.0" param="HBWEA_BATTERY_VOLTAGE" />
+         <parameter type="integer" index="22.0" size="2.0" param="HBWEA_BATTERY_VOLTAGE" />
       </frame>
   </frames>
   <paramset_defs></paramset_defs>
