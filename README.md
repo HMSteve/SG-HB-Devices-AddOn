@@ -16,10 +16,14 @@ Das AddOn dient der Buendelung der CCU3-Unterstuetzung meiner HB-Geraete.
 - [HB-UNI-Sen-THP](https://github.com/HMSteve/HB-UNI-Sen-THP/tree/master)
 - HB-UNI-Sen-S0-E (work in progress)
 - HB-UNI-Sen-CAP-MOIST-2 (work in progress)
-- HB-UNI-Sen-TEMP-DS18B20-2 (work in progress)
+- [HB-UNI-Sen-TEMP-DS18B20-2](https://github.com/HMSteve/HB-UNI-Sen-TEMP-DS18B20-2)
+- [HB-UNI-Sen-PC-GM](https://github.com/HMSteve/HB-UNI-Sen-PC-GM)
 
 
 ## Change Log
+- 1.8 - 13.09.2025
+  - HB-UNI-Sen-PC-GM (Gasuhr-Impulszaehler (Puls Counter for Gas Meter)) ergaenzt
+
 - 1.7 - 05.09.2025
   - HB-UNI-Sen-TEMP-DS18B20-2 (1- bis 8-fach Temperatursensor mit zusaetzlicher Batteriespannungsanzeige) ergaenzt
   - HB-UNI-SEN-CAP-MOIST-2 (kapazitiver Bodenfeuchtesensor) ergaenzt
